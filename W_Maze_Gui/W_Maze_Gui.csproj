@@ -173,6 +173,12 @@
       <DependentUpon>FillFeederWin.cs</DependentUpon>
     </Compile>
     <Compile Include="FormConsole.cs" />
+    <Compile Include="NLXReminder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NLXReminder.Designer.cs">
+      <DependentUpon>NLXReminder.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectRatWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FillFeederWin.resx">
       <DependentUpon>FillFeederWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NLXReminder.resx">
+      <DependentUpon>NLXReminder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectRatWindow.resx">
       <DependentUpon>SelectRatWindow.cs</DependentUpon>

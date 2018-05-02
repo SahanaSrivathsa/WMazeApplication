@@ -28,6 +28,7 @@ namespace W_Maze_Gui
         //recently made static; if there are issues with making an instance of W_Maze_GUI, change back
 
         private readonly Form exitConfirm = new ExitConfirm();
+        private readonly Form reminderWindow = new NLXReminder();
         private readonly Dictionary<string, string> name_to_age = new Dictionary<string, string>();
         private readonly Dictionary<string, int> name_to_session = new Dictionary<string, int>();
         private readonly List<string> ratName = new List<string>();
@@ -56,6 +57,7 @@ namespace W_Maze_Gui
         public string year;
         public double corOut = 0;
         public double percentCor = 0;
+        public double inboundPercentCor = 0;
         public int last = 0;
         public bool started = false;
         public bool newSesh { get; set; } = false;
@@ -63,6 +65,7 @@ namespace W_Maze_Gui
         public DateTime startdTime = DateTime.Now;
         private bool _recording;
         public bool acquiring = false;
+       
         private Window NeuraLynxWindow { get; }
 
         public W_Maze_Gui()
@@ -93,6 +96,7 @@ namespace W_Maze_Gui
 
             InitializeComponent();
             foreach (var rat in ratName) RatSelection.Items.Add(rat);
+            confirmCheetah();
             NeuraLynxWindow = Desktop.Instance.Windows().FirstOrDefault(w => w.Name.Contains("Neuralynx"));
         }
 
@@ -355,6 +359,11 @@ namespace W_Maze_Gui
             }
         }
 
+        public void confirmCheetah()
+        {
+            reminderWindow.StartPosition = FormStartPosition.CenterParent;
+            reminderWindow.ShowDialog();
+        }
         public static void sendMessage(string button) //handles messages to be sent to the UNO for filling/cleaning
         {
             switch (button)
@@ -453,6 +462,9 @@ namespace W_Maze_Gui
                             inboundCnt++;
                             inboundNum.Text = inboundCnt.ToString();
                             lastMessage = "i";
+                            inboundPercentCor = Math.Round((((correctCnt - corOut) / (inboundCnt + correctCnt - corOut)) * 100), 0,
+                                MidpointRounding.AwayFromZero);
+                            inboundPercent.Text = $"{inboundPercentCor.ToString()}%";
                             nextCorrect.Text = "Feeder 2";
                             break;
                         case "o":
@@ -522,6 +534,12 @@ namespace W_Maze_Gui
                                     {
                                         nextCorrect.Text = "Feeder 1";
                                     }
+                                    inboundPercentCor = Math.Round((((correctCnt - corOut) / (inboundCnt + correctCnt - corOut)) * 100), 0,
+                                        MidpointRounding.AwayFromZero);
+                                    if (inboundPercentCor == Double.PositiveInfinity)
+                                    {
+                                        inboundPercentCor = 100;}
+                                    inboundPercent.Text = $"{inboundPercentCor.ToString()}%";
                                     break;
                                 case "i":
                                     CsvFiles.TimestampCsv.Write($"2,Inbound Error,{DateTime.Now - startdTime}\n");
@@ -583,17 +601,19 @@ namespace W_Maze_Gui
 
         private void acquireButton_Click(object sender, EventArgs e)
         {
-           StartNeuraLynxAcquire();
+      
+            StartNeuraLynxAcquire();
         }
 
         public void recordButton_Click(object sender, EventArgs e)
         {
-            //_sender.SendMessage(RECORD);
+            
             StartNeuraLynxRecord();
             recordButton.Enabled = false;
             acquireButton.Enabled = false;
             StartButtonClick(sender,e);
 
         }
+
     }
 }

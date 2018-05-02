@@ -85,6 +85,12 @@
             this.nextCorrect = new System.Windows.Forms.Label();
             this.acquireButton = new System.Windows.Forms.Button();
             this.recordButton = new System.Windows.Forms.Button();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.inboundPercent = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -97,6 +103,7 @@
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
+            this.panel14.SuspendLayout();
             this.SuspendLayout();
             // 
             // startButton
@@ -303,7 +310,7 @@
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.Black;
-            this.saveButton.Location = new System.Drawing.Point(704, 584);
+            this.saveButton.Location = new System.Drawing.Point(702, 621);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(115, 44);
             this.saveButton.TabIndex = 21;
@@ -612,7 +619,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.Control;
-            this.label9.Location = new System.Drawing.Point(39, 306);
+            this.label9.Location = new System.Drawing.Point(39, 296);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 16);
             this.label9.TabIndex = 17;
@@ -621,8 +628,9 @@
             // panel11
             // 
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel11.Controls.Add(this.label16);
             this.panel11.Controls.Add(this.corOutNum);
-            this.panel11.Location = new System.Drawing.Point(42, 334);
+            this.panel11.Location = new System.Drawing.Point(42, 322);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(125, 54);
             this.panel11.TabIndex = 39;
@@ -641,8 +649,9 @@
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel12.Controls.Add(this.label14);
             this.panel12.Controls.Add(this.percentCorrect);
-            this.panel12.Location = new System.Drawing.Point(42, 424);
+            this.panel12.Location = new System.Drawing.Point(42, 412);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(125, 56);
             this.panel12.TabIndex = 40;
@@ -652,7 +661,7 @@
             this.percentCorrect.AutoSize = true;
             this.percentCorrect.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.percentCorrect.ForeColor = System.Drawing.Color.Cyan;
-            this.percentCorrect.Location = new System.Drawing.Point(35, 12);
+            this.percentCorrect.Location = new System.Drawing.Point(33, 12);
             this.percentCorrect.Name = "percentCorrect";
             this.percentCorrect.Size = new System.Drawing.Size(0, 25);
             this.percentCorrect.TabIndex = 41;
@@ -662,7 +671,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(17, 403);
+            this.label10.Location = new System.Drawing.Point(17, 391);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(185, 16);
             this.label10.TabIndex = 0;
@@ -673,7 +682,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.Control;
-            this.label12.Location = new System.Drawing.Point(31, 499);
+            this.label12.Location = new System.Drawing.Point(30, 602);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(156, 16);
             this.label12.TabIndex = 41;
@@ -683,7 +692,7 @@
             // 
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel13.Controls.Add(this.nextCorrect);
-            this.panel13.Location = new System.Drawing.Point(43, 524);
+            this.panel13.Location = new System.Drawing.Point(42, 621);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(125, 46);
             this.panel13.TabIndex = 42;
@@ -724,13 +733,79 @@
             this.recordButton.UseVisualStyleBackColor = true;
             this.recordButton.Click += new System.EventHandler(this.recordButton_Click);
             // 
+            // panel14
+            // 
+            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel14.Controls.Add(this.inboundPercent);
+            this.panel14.Controls.Add(this.label13);
+            this.panel14.Location = new System.Drawing.Point(42, 506);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(125, 56);
+            this.panel14.TabIndex = 45;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Cyan;
+            this.label13.Location = new System.Drawing.Point(35, 12);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(0, 25);
+            this.label13.TabIndex = 41;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.Control;
+            this.label14.Location = new System.Drawing.Point(-30, 53);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(185, 16);
+            this.label14.TabIndex = 46;
+            this.label14.Text = "Percent Correct Outbound";
+            //this.label14.Click += new System.EventHandler(this.label14_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.Control;
+            this.label15.Location = new System.Drawing.Point(25, 483);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(174, 16);
+            this.label15.TabIndex = 46;
+            this.label15.Text = "Percent Correct Inbound";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Cyan;
+            this.label16.Location = new System.Drawing.Point(41, 13);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(38, 25);
+            this.label16.TabIndex = 41;
+            this.label16.Text = "00";
+            // 
+            // inboundPercent
+            // 
+            this.inboundPercent.AutoSize = true;
+            this.inboundPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inboundPercent.ForeColor = System.Drawing.Color.Cyan;
+            this.inboundPercent.Location = new System.Drawing.Point(26, 12);
+            this.inboundPercent.Name = "inboundPercent";
+            this.inboundPercent.Size = new System.Drawing.Size(0, 25);
+            this.inboundPercent.TabIndex = 47;
+            // 
             // W_Maze_Gui
             // 
             this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.ClientSize = new System.Drawing.Size(908, 661);
+            this.ClientSize = new System.Drawing.Size(927, 715);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.panel14);
             this.Controls.Add(this.recordButton);
             this.Controls.Add(this.acquireButton);
             this.Controls.Add(this.panel13);
@@ -796,6 +871,8 @@
             this.panel12.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -859,6 +936,12 @@
         private System.Windows.Forms.Label nextCorrect;
         private System.Windows.Forms.Button acquireButton;
         private System.Windows.Forms.Button recordButton;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label inboundPercent;
+        private System.Windows.Forms.Label label15;
     }
 }
 
