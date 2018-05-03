@@ -29,6 +29,7 @@ namespace W_Maze_Gui
 
         private readonly Form exitConfirm = new ExitConfirm();
         private readonly Form reminderWindow;
+        private readonly Form modeWindow;
         private readonly Dictionary<string, string> name_to_age = new Dictionary<string, string>();
         private readonly Dictionary<string, int> name_to_session = new Dictionary<string, int>();
         private readonly List<string> ratName = new List<string>();
@@ -67,6 +68,7 @@ namespace W_Maze_Gui
         public bool acquiring = false;
         public string notesReformatted;
         public string experimenterReformatted;
+        public bool train;
 
        
         private Window NeuraLynxWindow { get; }
@@ -100,8 +102,10 @@ namespace W_Maze_Gui
             InitializeComponent();
             foreach (var rat in ratName) RatSelection.Items.Add(rat);
             reminderWindow = new NLXReminder(this);
-            confirmCheetah();
+            modeWindow = new appMode(this);
+            confirm();
             NeuraLynxWindow = Desktop.Instance.Windows().FirstOrDefault(w => w.Name.Contains("Neuralynx"));
+            
         }
 
         private static string fixDateTime(int x)
@@ -365,10 +369,12 @@ namespace W_Maze_Gui
             }
         }
 
-        public void confirmCheetah()
+        public void confirm()
         {
             reminderWindow.StartPosition = FormStartPosition.CenterParent;
             reminderWindow.ShowDialog();
+            modeWindow.StartPosition = FormStartPosition.CenterParent;
+            modeWindow.ShowDialog();
         }
         public static void sendMessage(string button) //handles messages to be sent to the UNO for filling/cleaning
         {
@@ -428,6 +434,26 @@ namespace W_Maze_Gui
                     try
                     {
                         serialPort.Write(new[] { 'z' }, 0, 1);
+                    }
+                    catch (Exception)
+                    {
+                        ;
+                    }
+                    break;
+                case "T":
+                    try
+                    {
+                        serialPort.Write(new[] {'T'}, 0, 1);
+                    }
+                    catch (Exception)
+                    {
+                        ;
+                    }
+                    break;
+                case "R":
+                    try
+                    {
+                        serialPort.Write(new[] { 'R' }, 0, 1);
                     }
                     catch (Exception)
                     {
@@ -625,6 +651,42 @@ namespace W_Maze_Gui
         {
             recordButton.Enabled = false;
             acquireButton.Enabled = false;
+        }
+
+        public void trainMode()
+        {
+            corOutNum.Visible = false;
+            inboundNum.Visible = false;
+            inboundPercent.Visible = false;
+            initialNum.Visible = false;
+            label10.Visible = false;
+            label11.Visible = false;
+            label12.Visible = false;
+            label13.Visible = false;
+            label15.Visible = false;
+            label16.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            label8.Visible = false;
+            label9.Visible = false;
+            totalNum.Visible = false;
+            nextCorrect.Visible = false;
+            outboundNum.Visible = false;
+            panel10.Visible = false;
+            panel11.Visible = false;
+            panel12.Visible = false;
+            panel13.Visible = false;
+            panel14.Visible = false;
+            panel5.Visible = false;
+            panel6.Visible = false;
+            panel7.Visible = false;
+            panel8.Visible = false;
+            percentCorrect.Visible = false;
+            repeatNum.Visible = false;
+            Total.Visible = false;
+            totalErrNum.Visible = false;
+            totalIncorrect.Visible = false;
         }
 
     }

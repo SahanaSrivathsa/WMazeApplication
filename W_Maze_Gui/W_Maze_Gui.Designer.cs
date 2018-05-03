@@ -76,6 +76,7 @@
             this.cleanButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
             this.corOutNum = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.percentCorrect = new System.Windows.Forms.Label();
@@ -86,11 +87,9 @@
             this.acquireButton = new System.Windows.Forms.Button();
             this.recordButton = new System.Windows.Forms.Button();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.inboundPercent = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -635,6 +634,17 @@
             this.panel11.Size = new System.Drawing.Size(125, 54);
             this.panel11.TabIndex = 39;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Cyan;
+            this.label16.Location = new System.Drawing.Point(41, 13);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(38, 25);
+            this.label16.TabIndex = 41;
+            this.label16.Text = "00";
+            // 
             // corOutNum
             // 
             this.corOutNum.AutoSize = true;
@@ -649,7 +659,6 @@
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel12.Controls.Add(this.label14);
             this.panel12.Controls.Add(this.percentCorrect);
             this.panel12.Location = new System.Drawing.Point(42, 412);
             this.panel12.Name = "panel12";
@@ -743,6 +752,16 @@
             this.panel14.Size = new System.Drawing.Size(125, 56);
             this.panel14.TabIndex = 45;
             // 
+            // inboundPercent
+            // 
+            this.inboundPercent.AutoSize = true;
+            this.inboundPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inboundPercent.ForeColor = System.Drawing.Color.Cyan;
+            this.inboundPercent.Location = new System.Drawing.Point(26, 12);
+            this.inboundPercent.Name = "inboundPercent";
+            this.inboundPercent.Size = new System.Drawing.Size(0, 25);
+            this.inboundPercent.TabIndex = 47;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -752,18 +771,6 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(0, 25);
             this.label13.TabIndex = 41;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.Control;
-            this.label14.Location = new System.Drawing.Point(-30, 53);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(185, 16);
-            this.label14.TabIndex = 46;
-            this.label14.Text = "Percent Correct Outbound";
-            //this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // label15
             // 
@@ -775,27 +782,6 @@
             this.label15.Size = new System.Drawing.Size(174, 16);
             this.label15.TabIndex = 46;
             this.label15.Text = "Percent Correct Inbound";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Cyan;
-            this.label16.Location = new System.Drawing.Point(41, 13);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(38, 25);
-            this.label16.TabIndex = 41;
-            this.label16.Text = "00";
-            // 
-            // inboundPercent
-            // 
-            this.inboundPercent.AutoSize = true;
-            this.inboundPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inboundPercent.ForeColor = System.Drawing.Color.Cyan;
-            this.inboundPercent.Location = new System.Drawing.Point(26, 12);
-            this.inboundPercent.Name = "inboundPercent";
-            this.inboundPercent.Size = new System.Drawing.Size(0, 25);
-            this.inboundPercent.TabIndex = 47;
             // 
             // W_Maze_Gui
             // 
@@ -938,7 +924,6 @@
         private System.Windows.Forms.Button recordButton;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label inboundPercent;
         private System.Windows.Forms.Label label15;
