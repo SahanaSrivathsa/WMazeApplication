@@ -65,6 +65,9 @@ namespace W_Maze_Gui
         public DateTime startdTime = DateTime.Now;
         private bool _recording;
         public bool acquiring = false;
+        public string notesReformatted;
+        public string experimenterReformatted;
+
        
         private Window NeuraLynxWindow { get; }
 
@@ -270,8 +273,10 @@ namespace W_Maze_Gui
                 //stopButton_Click(sender, e);
                 saveButton.ForeColor = Color.DarkGray;
                 saveButton.Enabled = false;
+                notesReformatted =  notesBox.Text.Replace("," , "");
+                experimenterReformatted = experimenterBox.Text.Replace(",", "");
                 CsvFiles.SessionCsv.Write(
-                    $"{sessionLabel.Text},{experimenterBox.Text},{DateTime.Now},{display_time.Text},{correctNum.Text},{corOutNum.Text},{initialNum.Text},{outboundNum.Text},{inboundNum.Text},{repeatNum.Text},{totalErrNum.Text},{totalNum.Text},{notesBox.Text}\n");
+                    $"{sessionLabel.Text},{experimenterReformatted},{DateTime.Now},{display_time.Text},{correctNum.Text},{corOutNum.Text},{initialNum.Text},{outboundNum.Text},{inboundNum.Text},{repeatNum.Text},{totalErrNum.Text},{totalNum.Text},{notesReformatted}\n");
                 CsvFiles.Close();
 
                 if (
