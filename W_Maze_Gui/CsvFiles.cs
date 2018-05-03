@@ -9,8 +9,10 @@ namespace W_Maze_Gui
         public static StreamReader RatdataReader;
         public static StreamWriter RatdataWriter;
         public static StreamWriter initial;
+        public static StreamWriter trainingCsv;
         private const string RatDataPath = @"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\RatData.Csv";
         private const string RatDirectoryPath = @"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\";
+        private const string trainingPath = @"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\Training\";
         public static void OpenRatDataCsv()
         {
             //ratdataReader = new StreamReader("RatData.csv",true);
@@ -26,6 +28,18 @@ namespace W_Maze_Gui
         public static void CloseRatDataCsv()
         {
             RatdataReader.Close();
+        }
+
+        public static void OpenTrainingCsv(string number)
+        {
+            if (!Directory.Exists(trainingPath + number))
+            {
+                Directory.CreateDirectory(trainingPath + number);
+                trainingCsv = new StreamWriter(trainingPath + number + $@"\{number}_training.csv");
+                trainingCsv.Write("Day/Time,Experimenter,Session Length,Laps,Notes\n");
+                trainingCsv.Close();
+            }
+            trainingCsv = new StreamWriter(trainingPath + number + $@"\{number}_training.csv",true);
         }
 
         public static void OpenSessionCsv(string number)

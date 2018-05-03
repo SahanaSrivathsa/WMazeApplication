@@ -151,22 +151,32 @@ namespace W_Maze_Gui
                 ratSelectionLabel.Text = $"{ratName[RatSelection.SelectedIndex]}";
                 var chosenRat = ratName[RatSelection.SelectedIndex];
                 ageLabel.Text = name_to_age[chosenRat];
-                sessionLabel.Text = name_to_session[chosenRat].ToString();
-                CsvFiles.OpenSessionCsv(chosenRat);
-                ratWasChosen = true;
-                CsvFiles.OpenWriteToRatData();
-                foreach (var ratname in name_to_age.Keys)
+                if (train)
                 {
-                    if (ratname == chosenRat)
-                        name_to_session[ratname]++;
-                    CsvFiles.RatdataWriter.Write(
-                        $"{ratname},{name_to_age[ratname]},{name_to_session[ratname]}\n");
+                    sessionLabel.Text = "TRAINING";
+                    CsvFiles.OpenTrainingCsv(chosenRat);
                 }
-                sessionNumber = (name_to_session[chosenRat] - 1).ToString();
+                else
+                {
+                    sessionLabel.Text = name_to_session[chosenRat].ToString();
+                    CsvFiles.OpenSessionCsv(chosenRat);
+                    CsvFiles.OpenWriteToRatData();
+                    foreach (var ratname in name_to_age.Keys)
+                    {
+                        if (ratname == chosenRat)
+                            name_to_session[ratname]++;
+                        CsvFiles.RatdataWriter.Write(
+                            $"{ratname},{name_to_age[ratname]},{name_to_session[ratname]}\n");
+                    }
+                    sessionNumber = (name_to_session[chosenRat] - 1).ToString();
+                    CsvFiles.OpenTimestampCsv(chosenRat, sessionNumber);
+                    CsvFiles.TimestampCsv.Write("Feeder,Type,Timestamp\n");
+                    CsvFiles.RatdataClose();
+                }
+                
+                ratWasChosen = true;
                 ratbeingtested = ratName[RatSelection.SelectedIndex];
-                CsvFiles.OpenTimestampCsv(chosenRat, sessionNumber);
-                CsvFiles.TimestampCsv.Write("Feeder,Type,Timestamp\n");
-                CsvFiles.RatdataClose();
+                
 
             }
         }
@@ -274,27 +284,35 @@ namespace W_Maze_Gui
             if (ratWasChosen)
             {
                 Show();
-                //stopButton_Click(sender, e);
                 saveButton.ForeColor = Color.DarkGray;
                 saveButton.Enabled = false;
                 notesReformatted =  notesBox.Text.Replace("," , "");
                 experimenterReformatted = experimenterBox.Text.Replace(",", "");
-                CsvFiles.SessionCsv.Write(
-                    $"{sessionLabel.Text},{experimenterReformatted},{DateTime.Now},{display_time.Text},{correctNum.Text},{corOutNum.Text},{initialNum.Text},{outboundNum.Text},{inboundNum.Text},{repeatNum.Text},{totalErrNum.Text},{totalNum.Text},{notesReformatted}\n");
-                CsvFiles.Close();
-
-                if (
-                    !Directory.Exists(
-                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots"))
-                    Directory.CreateDirectory(
-                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots");
-                var bmpScreenCapture = new Bitmap(Width, Height);
-                DrawToBitmap(bmpScreenCapture, new Rectangle(0, 0, bmpScreenCapture.Width, bmpScreenCapture.Height));
-                bmpScreenCapture.Save(
-                    $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots\GUIscreenshot_{ratName
-                        [RatSelection.SelectedIndex]}_Session{sessionNumber}.gif",
-                    ImageFormat.Gif);
+                if (train)
+                {
+                    CsvFiles.trainingCsv.Write($"{DateTime.Now},{experimenterReformatted},{display_time.Text},{correctNum.Text},{notesReformatted}\n");
+                    CsvFiles.trainingCsv.Close();
+                }
+                else
+                {
+                    CsvFiles.SessionCsv.Write(
+                        $"{sessionLabel.Text},{experimenterReformatted},{DateTime.Now},{display_time.Text},{correctNum.Text},{corOutNum.Text},{initialNum.Text},{outboundNum.Text},{inboundNum.Text},{repeatNum.Text},{totalErrNum.Text},{totalNum.Text},{notesReformatted}\n");
+                    CsvFiles.Close();
+                    if (
+                        !Directory.Exists(
+                            $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots"))
+                        Directory.CreateDirectory(
+                            $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots");
+                    var bmpScreenCapture = new Bitmap(Width, Height);
+                    DrawToBitmap(bmpScreenCapture, new Rectangle(0, 0, bmpScreenCapture.Width, bmpScreenCapture.Height));
+                    bmpScreenCapture.Save(
+                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots\GUIscreenshot_{ratName
+                            [RatSelection.SelectedIndex]}_Session{sessionNumber}.gif",
+                        ImageFormat.Gif);
+                    
+                }
                 saved = true;
+
 
                 if (
                     File.Exists(
@@ -326,7 +344,12 @@ namespace W_Maze_Gui
                     e.Cancel = true;
                     _exiting = false;
 
-                    if (ratWasChosen)
+                    if (train)
+                    {
+                        CsvFiles.trainingCsv.Close();
+                    }
+
+                    if (ratWasChosen && !train)
                     {
                         CsvFiles.OpenWriteToRatData();
 
@@ -336,6 +359,7 @@ namespace W_Maze_Gui
                                 name_to_session[ratname]--;
                             CsvFiles.RatdataWriter.Write(
                                 $"{ratname},{name_to_age[ratname]},{name_to_session[ratname]}\n");
+
                         }
                         CsvFiles.RatdataClose();
                         CsvFiles.Close();
@@ -343,8 +367,12 @@ namespace W_Maze_Gui
                 }
                 else
                 {
-                    CsvFiles.RatdataClose();
-                    CsvFiles.Close();
+
+                    if (!train)
+                    {
+                        CsvFiles.RatdataClose();
+                        CsvFiles.Close();
+                    }
                     Environment.Exit(0);
                     
                 }
@@ -480,152 +508,171 @@ namespace W_Maze_Gui
                 }
                 if (newSesh)
                 {
-                    switch (messageType)
+                    if (train)
                     {
-                        case "w":
-                            startButton.ForeColor = Color.White;
-                            break;
-                        case "c":
-                            correctCnt++;
-                            correctNum.Text = correctCnt.ToString();
-                            lastMessage = "c";
-                            break;
-                        case "i":
-                            inboundCnt++;
-                            inboundNum.Text = inboundCnt.ToString();
-                            lastMessage = "i";
-                            inboundPercentCor = Math.Round((((correctCnt - corOut) / (inboundCnt + correctCnt - corOut)) * 100), 0,
-                                MidpointRounding.AwayFromZero);
-                            inboundPercent.Text = $"{inboundPercentCor.ToString()}%";
-                            nextCorrect.Text = "Feeder 2";
-                            break;
-                        case "o":
-                            outboundCnt++;
-                            outboundNum.Text = outboundCnt.ToString();
-                            lastMessage = "o";
-                            percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
-                                MidpointRounding.AwayFromZero);
-                            percentCorrect.Text = $"{percentCor.ToString()}%";
-                            nextCorrect.Text = "Feeder 2";
-                            break;
-                        case "r":
-                            repeatCnt++;
-                            repeatNum.Text = repeatCnt.ToString();
-                            lastMessage = "r";
-                            break;
-                        case "b":
-                            initialCnt++;
-                            initialNum.Text = initialCnt.ToString();
-                            lastMessage = "b";
-                            break;
-                        case "1":
-                            switch (lastMessage)
-                            {
-                                case "c":
-                                    CsvFiles.TimestampCsv.Write($"1,Correct,{DateTime.Now - startdTime}\n");
-                                    corOut++;
-                                    corOutNum.Text = corOut.ToString();
-                                    percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
-                                        MidpointRounding.AwayFromZero);
-                                    percentCorrect.Text = $"{percentCor.ToString()}%";
-                                    last = 1;
-                                    nextCorrect.Text = "Feeder 2";
-                                    break;
-                                case "i":
-                                    CsvFiles.TimestampCsv.Write($"1,Inbound Error,{DateTime.Now - startdTime}\n");
-                                    last = 1;
-                                    break;
-                                case "o":
-                                    CsvFiles.TimestampCsv.Write($"1,Outbound Error,{DateTime.Now - startdTime}\n");
-                                    last = 1;
-                                    break;
-                                case "r":
-                                    CsvFiles.TimestampCsv.Write($"1,Repeat Error,{DateTime.Now - startdTime}\n");
-                                    break;
-                                case "b":
-                                    CsvFiles.TimestampCsv.Write($"1,Initial Error,{DateTime.Now - startdTime}\n");
-                                    last = 1;
-                                    break;
-                            }
+                        switch (messageType)
+                        {
+                            case "c":
+                                correctCnt++;
+                                correctNum.Text = correctCnt.ToString();
+                                lastMessage = "c";
+                                break;
 
-                            break;
-                        case "2":
-                            switch (lastMessage)
-                            {
-                                case "c":
-                                    CsvFiles.TimestampCsv.Write($"2,Correct,{DateTime.Now - startdTime}\n");
-                                    if (last == 0)
-                                    {
-                                        nextCorrect.Text = "Feeder 1/3";
-                                    }
-                                    if (last == 1)
-                                    {
-                                        nextCorrect.Text = "Feeder 3";
-                                    }
-                                    if (last == 3)
-                                    {
-                                        nextCorrect.Text = "Feeder 1";
-                                    }
-                                    inboundPercentCor = Math.Round((((correctCnt - corOut) / (inboundCnt + correctCnt - corOut)) * 100), 0,
-                                        MidpointRounding.AwayFromZero);
-                                    if (inboundPercentCor == Double.PositiveInfinity)
-                                    {
-                                        inboundPercentCor = 100;}
-                                    inboundPercent.Text = $"{inboundPercentCor.ToString()}%";
-                                    break;
-                                case "i":
-                                    CsvFiles.TimestampCsv.Write($"2,Inbound Error,{DateTime.Now - startdTime}\n");
-                                    break;
-                                case "o":
-                                    CsvFiles.TimestampCsv.Write($"2,Outbound Error,{DateTime.Now - startdTime}\n");
-                                    break;
-                                case "r":
-                                    CsvFiles.TimestampCsv.Write($"2,Repeat Error,{DateTime.Now - startdTime}\n");
-                                    break;
-                                case "b":
-                                    CsvFiles.TimestampCsv.Write($"2,Initial Error,{DateTime.Now - startdTime}\n");
-                                    break;
-                            }
-
-                            break;
-                        case "3":
-                            switch (lastMessage)
-                            {
-                                case "c":
-                                    CsvFiles.TimestampCsv.Write($"3,Correct,{DateTime.Now - startdTime}\n");
-                                    corOut++;
-                                    corOutNum.Text = corOut.ToString();
-                                    percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
-                                        MidpointRounding.AwayFromZero);
-                                    percentCorrect.Text = $"{percentCor.ToString()}%";
-                                    last = 3;
-                                    nextCorrect.Text = "Feeder 2";
-                                    break;
-                                case "i":
-                                    CsvFiles.TimestampCsv.Write($"3,Inbound Error,{DateTime.Now - startdTime}\n");
-                                    last = 3;
-                                    break;
-                                case "o":
-                                    CsvFiles.TimestampCsv.Write($"3,Outbound Error,{DateTime.Now - startdTime}\n");
-                                    last = 3;
-                                    break;
-                                case "r":
-                                    CsvFiles.TimestampCsv.Write($"3,Repeat Error,{DateTime.Now - startdTime}\n");
-                                    break;
-                                case "b":
-                                    CsvFiles.TimestampCsv.Write($"3,Initial Error,{DateTime.Now - startdTime}\n");
-                                    last = 3;
-                                    break;
-                            }
-
-                            break;
-
+                        }
                     }
-                    totes = inboundCnt + repeatCnt + initialCnt + outboundCnt;
-                    totalErrNum.Text = totes.ToString();
-                    totalNum.Text = (totes + correctCnt).ToString();
+                    else
+                    {
+                        switch (messageType)
+                        {
+                            case "w":
+                                startButton.ForeColor = Color.White;
+                                break;
+                            case "c":
+                                correctCnt++;
+                                correctNum.Text = correctCnt.ToString();
+                                lastMessage = "c";
+                                break;
+                            case "i":
+                                inboundCnt++;
+                                inboundNum.Text = inboundCnt.ToString();
+                                lastMessage = "i";
+                                inboundPercentCor = Math.Round(
+                                    (((correctCnt - corOut) / (inboundCnt + correctCnt - corOut)) * 100), 0,
+                                    MidpointRounding.AwayFromZero);
+                                inboundPercent.Text = $"{inboundPercentCor.ToString()}%";
+                                nextCorrect.Text = "Feeder 2";
+                                break;
+                            case "o":
+                                outboundCnt++;
+                                outboundNum.Text = outboundCnt.ToString();
+                                lastMessage = "o";
+                                percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
+                                    MidpointRounding.AwayFromZero);
+                                percentCorrect.Text = $"{percentCor.ToString()}%";
+                                nextCorrect.Text = "Feeder 2";
+                                break;
+                            case "r":
+                                repeatCnt++;
+                                repeatNum.Text = repeatCnt.ToString();
+                                lastMessage = "r";
+                                break;
+                            case "b":
+                                initialCnt++;
+                                initialNum.Text = initialCnt.ToString();
+                                lastMessage = "b";
+                                break;
+                            case "1":
+                                switch (lastMessage)
+                                {
+                                    case "c":
+                                        CsvFiles.TimestampCsv.Write($"1,Correct,{DateTime.Now - startdTime}\n");
+                                        corOut++;
+                                        corOutNum.Text = corOut.ToString();
+                                        percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
+                                            MidpointRounding.AwayFromZero);
+                                        percentCorrect.Text = $"{percentCor.ToString()}%";
+                                        last = 1;
+                                        nextCorrect.Text = "Feeder 2";
+                                        break;
+                                    case "i":
+                                        CsvFiles.TimestampCsv.Write($"1,Inbound Error,{DateTime.Now - startdTime}\n");
+                                        last = 1;
+                                        break;
+                                    case "o":
+                                        CsvFiles.TimestampCsv.Write($"1,Outbound Error,{DateTime.Now - startdTime}\n");
+                                        last = 1;
+                                        break;
+                                    case "r":
+                                        CsvFiles.TimestampCsv.Write($"1,Repeat Error,{DateTime.Now - startdTime}\n");
+                                        break;
+                                    case "b":
+                                        CsvFiles.TimestampCsv.Write($"1,Initial Error,{DateTime.Now - startdTime}\n");
+                                        last = 1;
+                                        break;
+                                }
+
+                                break;
+                            case "2":
+                                switch (lastMessage)
+                                {
+                                    case "c":
+                                        CsvFiles.TimestampCsv.Write($"2,Correct,{DateTime.Now - startdTime}\n");
+                                        if (last == 0)
+                                        {
+                                            nextCorrect.Text = "Feeder 1/3";
+                                        }
+                                        if (last == 1)
+                                        {
+                                            nextCorrect.Text = "Feeder 3";
+                                        }
+                                        if (last == 3)
+                                        {
+                                            nextCorrect.Text = "Feeder 1";
+                                        }
+                                        inboundPercentCor = Math.Round(
+                                            (((correctCnt - corOut) / (inboundCnt + correctCnt - corOut)) * 100), 0,
+                                            MidpointRounding.AwayFromZero);
+                                        if (inboundPercentCor == Double.PositiveInfinity)
+                                        {
+                                            inboundPercentCor = 100;
+                                        }
+                                        inboundPercent.Text = $"{inboundPercentCor.ToString()}%";
+                                        break;
+                                    case "i":
+                                        CsvFiles.TimestampCsv.Write($"2,Inbound Error,{DateTime.Now - startdTime}\n");
+                                        break;
+                                    case "o":
+                                        CsvFiles.TimestampCsv.Write($"2,Outbound Error,{DateTime.Now - startdTime}\n");
+                                        break;
+                                    case "r":
+                                        CsvFiles.TimestampCsv.Write($"2,Repeat Error,{DateTime.Now - startdTime}\n");
+                                        break;
+                                    case "b":
+                                        CsvFiles.TimestampCsv.Write($"2,Initial Error,{DateTime.Now - startdTime}\n");
+                                        break;
+                                }
+
+                                break;
+                            case "3":
+                                switch (lastMessage)
+                                {
+                                    case "c":
+                                        CsvFiles.TimestampCsv.Write($"3,Correct,{DateTime.Now - startdTime}\n");
+                                        corOut++;
+                                        corOutNum.Text = corOut.ToString();
+                                        percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
+                                            MidpointRounding.AwayFromZero);
+                                        percentCorrect.Text = $"{percentCor.ToString()}%";
+                                        last = 3;
+                                        nextCorrect.Text = "Feeder 2";
+                                        break;
+                                    case "i":
+                                        CsvFiles.TimestampCsv.Write($"3,Inbound Error,{DateTime.Now - startdTime}\n");
+                                        last = 3;
+                                        break;
+                                    case "o":
+                                        CsvFiles.TimestampCsv.Write($"3,Outbound Error,{DateTime.Now - startdTime}\n");
+                                        last = 3;
+                                        break;
+                                    case "r":
+                                        CsvFiles.TimestampCsv.Write($"3,Repeat Error,{DateTime.Now - startdTime}\n");
+                                        break;
+                                    case "b":
+                                        CsvFiles.TimestampCsv.Write($"3,Initial Error,{DateTime.Now - startdTime}\n");
+                                        last = 3;
+                                        break;
+                                }
+
+                                break;
+
+                        }
+                        totes = inboundCnt + repeatCnt + initialCnt + outboundCnt;
+                        totalErrNum.Text = totes.ToString();
+                        totalNum.Text = (totes + correctCnt).ToString();
+                    }
                 }
-            }
+            
+        }
 
             if (!felix.IsBusy)
                 felix.RunWorkerAsync();

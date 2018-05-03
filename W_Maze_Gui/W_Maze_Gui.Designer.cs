@@ -277,9 +277,9 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.sessionLabel);
-            this.panel1.Location = new System.Drawing.Point(688, 259);
+            this.panel1.Location = new System.Drawing.Point(669, 259);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(150, 114);
+            this.panel1.Size = new System.Drawing.Size(192, 114);
             this.panel1.TabIndex = 18;
             // 
             // panel2
@@ -287,9 +287,9 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.ageLabel);
-            this.panel2.Location = new System.Drawing.Point(688, 259);
+            this.panel2.Location = new System.Drawing.Point(669, 259);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(150, 58);
+            this.panel2.Size = new System.Drawing.Size(192, 58);
             this.panel2.TabIndex = 19;
             // 
             // correctNum
