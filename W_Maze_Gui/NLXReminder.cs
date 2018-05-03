@@ -13,8 +13,11 @@ namespace W_Maze_Gui
 {
     public partial class NLXReminder : Form
     {
-        public NLXReminder()
+        private W_Maze_Gui _gui;
+
+        public NLXReminder(W_Maze_Gui gui)
         {
+            _gui = gui;
             InitializeComponent();
         }
 
@@ -26,8 +29,8 @@ namespace W_Maze_Gui
         private void notRecording(object sender, EventArgs e)
         {
             Close();
-            W_Maze_Gui.recordButton.Enabled = false;
-            W_Maze_Gui.acquireButton.Enabled = false;
+            _gui.disable_NLX();
+                
         }
     }
 }

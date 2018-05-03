@@ -28,7 +28,7 @@ namespace W_Maze_Gui
         //recently made static; if there are issues with making an instance of W_Maze_GUI, change back
 
         private readonly Form exitConfirm = new ExitConfirm();
-        private readonly Form reminderWindow = new NLXReminder();
+        private readonly Form reminderWindow;
         private readonly Dictionary<string, string> name_to_age = new Dictionary<string, string>();
         private readonly Dictionary<string, int> name_to_session = new Dictionary<string, int>();
         private readonly List<string> ratName = new List<string>();
@@ -96,6 +96,7 @@ namespace W_Maze_Gui
 
             InitializeComponent();
             foreach (var rat in ratName) RatSelection.Items.Add(rat);
+            reminderWindow = new NLXReminder(this);
             confirmCheetah();
             NeuraLynxWindow = Desktop.Instance.Windows().FirstOrDefault(w => w.Name.Contains("Neuralynx"));
         }
@@ -297,8 +298,8 @@ namespace W_Maze_Gui
                             $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\Videos\{RatSelection.SelectedIndex}");
 
                     File.Move(
-                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\Videos\Composite_{year}{month}{day}_{hour}{minute}.ts",
-                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\Videos\{RatSelection.SelectedIndex}\Composite_{year}{month}{day}_{hour}{minute}.mpeg");
+                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\Current Cohort Videos\Composite_(NTSC){year}{month}{day}_{hour}{minute}.ts",
+                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\Current Cohort Videos\{RatSelection.SelectedIndex}\{RatSelection.SelectedIndex}_{sessionLabel}.mpeg");
                 }
             }
         }
@@ -613,6 +614,12 @@ namespace W_Maze_Gui
             acquireButton.Enabled = false;
             StartButtonClick(sender,e);
 
+        }
+
+        public void disable_NLX()
+        {
+            recordButton.Enabled = false;
+            acquireButton.Enabled = false;
         }
 
     }

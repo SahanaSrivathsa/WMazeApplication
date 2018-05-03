@@ -63,6 +63,7 @@
             this.notRecordingButton.TabIndex = 2;
             this.notRecordingButton.Text = "Not Recording";
             this.notRecordingButton.UseVisualStyleBackColor = false;
+            this.notRecordingButton.Click += new System.EventHandler(this.notRecording);
             // 
             // NLXReminder
             // 
