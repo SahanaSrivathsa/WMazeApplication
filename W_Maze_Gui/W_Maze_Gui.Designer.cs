@@ -74,10 +74,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.fillButton = new System.Windows.Forms.Button();
             this.cleanButton = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.corOutNum = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.percentCorrect = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -90,6 +86,13 @@
             this.inboundPercent = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.notesBox_behaviour = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.startPreSleep = new System.Windows.Forms.Button();
+            this.stopPreSleep = new System.Windows.Forms.Button();
+            this.startPostSleep = new System.Windows.Forms.Button();
+            this.stopPostSleep = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -99,7 +102,6 @@
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -110,13 +112,13 @@
             this.startButton.AutoSize = true;
             this.startButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(172)))), ((int)(((byte)(57)))));
             this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(0)))));
-            this.startButton.Location = new System.Drawing.Point(327, 195);
+            this.startButton.Location = new System.Drawing.Point(293, 238);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(101, 54);
+            this.startButton.Size = new System.Drawing.Size(129, 54);
             this.startButton.TabIndex = 1;
-            this.startButton.Text = "Start";
+            this.startButton.Text = "Start Run";
             this.startButton.UseVisualStyleBackColor = false;
             this.startButton.Click += new System.EventHandler(this.StartButtonClick);
             // 
@@ -125,13 +127,13 @@
             this.stopButton.AutoSize = true;
             this.stopButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stopButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.stopButton.Location = new System.Drawing.Point(452, 195);
+            this.stopButton.Location = new System.Drawing.Point(502, 237);
             this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(105, 54);
+            this.stopButton.Size = new System.Drawing.Size(127, 55);
             this.stopButton.TabIndex = 2;
-            this.stopButton.Text = "Stop";
+            this.stopButton.Text = "Stop Run";
             this.stopButton.UseVisualStyleBackColor = false;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
@@ -146,7 +148,7 @@
             this.RatSelection.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.RatSelection.FormattingEnabled = true;
             this.RatSelection.IntegralHeight = false;
-            this.RatSelection.Location = new System.Drawing.Point(716, 93);
+            this.RatSelection.Location = new System.Drawing.Point(751, 54);
             this.RatSelection.Name = "RatSelection";
             this.RatSelection.Size = new System.Drawing.Size(101, 21);
             this.RatSelection.Sorted = true;
@@ -164,7 +166,7 @@
             this.display_time.AutoSize = true;
             this.display_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.display_time.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.display_time.Location = new System.Drawing.Point(326, 68);
+            this.display_time.Location = new System.Drawing.Point(339, 97);
             this.display_time.MinimumSize = new System.Drawing.Size(200, 100);
             this.display_time.Name = "display_time";
             this.display_time.Size = new System.Drawing.Size(237, 100);
@@ -174,22 +176,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(709, 67);
+            this.label1.Location = new System.Drawing.Point(728, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 22);
+            this.label1.Size = new System.Drawing.Size(149, 24);
             this.label1.TabIndex = 6;
             this.label1.Text = "Rat Number";
             // 
             // feederVisitTitle
             // 
             this.feederVisitTitle.AutoSize = true;
-            this.feederVisitTitle.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feederVisitTitle.Font = new System.Drawing.Font("Copperplate Gothic Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.feederVisitTitle.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.feederVisitTitle.Location = new System.Drawing.Point(15, 19);
+            this.feederVisitTitle.Location = new System.Drawing.Point(13, 14);
             this.feederVisitTitle.Name = "feederVisitTitle";
-            this.feederVisitTitle.Size = new System.Drawing.Size(153, 22);
+            this.feederVisitTitle.Size = new System.Drawing.Size(164, 24);
             this.feederVisitTitle.TabIndex = 8;
             this.feederVisitTitle.Text = "Feeder Visits";
             // 
@@ -245,7 +247,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(3, 72);
+            this.label3.Location = new System.Drawing.Point(3, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 18);
             this.label3.TabIndex = 16;
@@ -277,7 +279,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.sessionLabel);
-            this.panel1.Location = new System.Drawing.Point(669, 259);
+            this.panel1.Location = new System.Drawing.Point(702, 262);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(192, 114);
             this.panel1.TabIndex = 18;
@@ -287,7 +289,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.ageLabel);
-            this.panel2.Location = new System.Drawing.Point(669, 259);
+            this.panel2.Location = new System.Drawing.Point(702, 259);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(192, 58);
             this.panel2.TabIndex = 19;
@@ -309,7 +311,7 @@
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.Black;
-            this.saveButton.Location = new System.Drawing.Point(702, 621);
+            this.saveButton.Location = new System.Drawing.Point(737, 606);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(115, 44);
             this.saveButton.TabIndex = 21;
@@ -473,11 +475,11 @@
             // experimenterLabel
             // 
             this.experimenterLabel.AutoSize = true;
-            this.experimenterLabel.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.experimenterLabel.Font = new System.Drawing.Font("Copperplate Gothic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.experimenterLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.experimenterLabel.Location = new System.Drawing.Point(269, 335);
+            this.experimenterLabel.Location = new System.Drawing.Point(290, 347);
             this.experimenterLabel.Name = "experimenterLabel";
-            this.experimenterLabel.Size = new System.Drawing.Size(138, 18);
+            this.experimenterLabel.Size = new System.Drawing.Size(136, 18);
             this.experimenterLabel.TabIndex = 26;
             this.experimenterLabel.Text = "Experimenter:";
             // 
@@ -487,7 +489,7 @@
             this.experimenterBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.experimenterBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.experimenterBox.ForeColor = System.Drawing.Color.White;
-            this.experimenterBox.Location = new System.Drawing.Point(413, 338);
+            this.experimenterBox.Location = new System.Drawing.Point(468, 348);
             this.experimenterBox.Name = "experimenterBox";
             this.experimenterBox.Size = new System.Drawing.Size(137, 15);
             this.experimenterBox.TabIndex = 27;
@@ -498,20 +500,20 @@
             this.notesBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.notesBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notesBox.ForeColor = System.Drawing.Color.White;
-            this.notesBox.Location = new System.Drawing.Point(272, 401);
+            this.notesBox.Location = new System.Drawing.Point(293, 457);
             this.notesBox.Multiline = true;
             this.notesBox.Name = "notesBox";
-            this.notesBox.Size = new System.Drawing.Size(333, 193);
+            this.notesBox.Size = new System.Drawing.Size(336, 80);
             this.notesBox.TabIndex = 28;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label4.Location = new System.Drawing.Point(269, 381);
+            this.label4.Location = new System.Drawing.Point(405, 396);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 18);
+            this.label4.Size = new System.Drawing.Size(76, 21);
             this.label4.TabIndex = 29;
             this.label4.Text = "Notes";
             // 
@@ -521,7 +523,7 @@
             this.selectButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.selectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectButton.ForeColor = System.Drawing.Color.Black;
-            this.selectButton.Location = new System.Drawing.Point(727, 120);
+            this.selectButton.Location = new System.Drawing.Point(762, 83);
             this.selectButton.Name = "selectButton";
             this.selectButton.Size = new System.Drawing.Size(75, 23);
             this.selectButton.TabIndex = 30;
@@ -534,7 +536,7 @@
             this.ratSelectionLabel.AutoSize = true;
             this.ratSelectionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ratSelectionLabel.ForeColor = System.Drawing.Color.Cyan;
-            this.ratSelectionLabel.Location = new System.Drawing.Point(727, 97);
+            this.ratSelectionLabel.Location = new System.Drawing.Point(762, 97);
             this.ratSelectionLabel.Name = "ratSelectionLabel";
             this.ratSelectionLabel.Size = new System.Drawing.Size(0, 25);
             this.ratSelectionLabel.TabIndex = 31;
@@ -592,7 +594,7 @@
             this.fillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fillButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fillButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.fillButton.Location = new System.Drawing.Point(716, 422);
+            this.fillButton.Location = new System.Drawing.Point(751, 422);
             this.fillButton.Name = "fillButton";
             this.fillButton.Size = new System.Drawing.Size(86, 36);
             this.fillButton.TabIndex = 37;
@@ -605,7 +607,7 @@
             this.cleanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cleanButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cleanButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.cleanButton.Location = new System.Drawing.Point(716, 486);
+            this.cleanButton.Location = new System.Drawing.Point(751, 488);
             this.cleanButton.Name = "cleanButton";
             this.cleanButton.Size = new System.Drawing.Size(86, 36);
             this.cleanButton.TabIndex = 38;
@@ -613,54 +615,11 @@
             this.cleanButton.UseVisualStyleBackColor = true;
             this.cleanButton.Click += new System.EventHandler(this.cleanFeeders);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.Control;
-            this.label9.Location = new System.Drawing.Point(39, 296);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(128, 16);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Correct Outbound";
-            // 
-            // panel11
-            // 
-            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel11.Controls.Add(this.label16);
-            this.panel11.Controls.Add(this.corOutNum);
-            this.panel11.Location = new System.Drawing.Point(42, 322);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(125, 54);
-            this.panel11.TabIndex = 39;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Cyan;
-            this.label16.Location = new System.Drawing.Point(41, 13);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(38, 25);
-            this.label16.TabIndex = 41;
-            this.label16.Text = "00";
-            // 
-            // corOutNum
-            // 
-            this.corOutNum.AutoSize = true;
-            this.corOutNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.corOutNum.ForeColor = System.Drawing.Color.Cyan;
-            this.corOutNum.Location = new System.Drawing.Point(41, 12);
-            this.corOutNum.Name = "corOutNum";
-            this.corOutNum.Size = new System.Drawing.Size(38, 25);
-            this.corOutNum.TabIndex = 40;
-            this.corOutNum.Text = "00";
-            // 
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel12.Controls.Add(this.percentCorrect);
-            this.panel12.Location = new System.Drawing.Point(42, 412);
+            this.panel12.Location = new System.Drawing.Point(42, 333);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(125, 56);
             this.panel12.TabIndex = 40;
@@ -680,7 +639,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(17, 391);
+            this.label10.Location = new System.Drawing.Point(17, 301);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(185, 16);
             this.label10.TabIndex = 0;
@@ -691,7 +650,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.Control;
-            this.label12.Location = new System.Drawing.Point(30, 602);
+            this.label12.Location = new System.Drawing.Point(29, 525);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(156, 16);
             this.label12.TabIndex = 41;
@@ -701,7 +660,7 @@
             // 
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel13.Controls.Add(this.nextCorrect);
-            this.panel13.Location = new System.Drawing.Point(42, 621);
+            this.panel13.Location = new System.Drawing.Point(42, 567);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(125, 46);
             this.panel13.TabIndex = 42;
@@ -721,10 +680,10 @@
             // 
             this.acquireButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.acquireButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.acquireButton.ForeColor = System.Drawing.Color.Yellow;
-            this.acquireButton.Location = new System.Drawing.Point(688, 209);
+            this.acquireButton.ForeColor = System.Drawing.Color.Teal;
+            this.acquireButton.Location = new System.Drawing.Point(702, 198);
             this.acquireButton.Name = "acquireButton";
-            this.acquireButton.Size = new System.Drawing.Size(69, 40);
+            this.acquireButton.Size = new System.Drawing.Size(78, 51);
             this.acquireButton.TabIndex = 43;
             this.acquireButton.Text = "ACQUIRE";
             this.acquireButton.UseVisualStyleBackColor = true;
@@ -733,10 +692,10 @@
             // recordButton
             // 
             this.recordButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.recordButton.ForeColor = System.Drawing.Color.Fuchsia;
-            this.recordButton.Location = new System.Drawing.Point(769, 209);
+            this.recordButton.ForeColor = System.Drawing.Color.Teal;
+            this.recordButton.Location = new System.Drawing.Point(819, 198);
             this.recordButton.Name = "recordButton";
-            this.recordButton.Size = new System.Drawing.Size(69, 40);
+            this.recordButton.Size = new System.Drawing.Size(75, 51);
             this.recordButton.TabIndex = 44;
             this.recordButton.Text = "RECORD";
             this.recordButton.UseVisualStyleBackColor = true;
@@ -747,7 +706,7 @@
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel14.Controls.Add(this.inboundPercent);
             this.panel14.Controls.Add(this.label13);
-            this.panel14.Location = new System.Drawing.Point(42, 506);
+            this.panel14.Location = new System.Drawing.Point(42, 436);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(125, 56);
             this.panel14.TabIndex = 45;
@@ -777,11 +736,112 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.Control;
-            this.label15.Location = new System.Drawing.Point(25, 483);
+            this.label15.Location = new System.Drawing.Point(17, 401);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(174, 16);
             this.label15.TabIndex = 46;
             this.label15.Text = "Percent Correct Inbound";
+            // 
+            // notesBox_behaviour
+            // 
+            this.notesBox_behaviour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.notesBox_behaviour.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.notesBox_behaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notesBox_behaviour.ForeColor = System.Drawing.Color.White;
+            this.notesBox_behaviour.Location = new System.Drawing.Point(293, 582);
+            this.notesBox_behaviour.Multiline = true;
+            this.notesBox_behaviour.Name = "notesBox_behaviour";
+            this.notesBox_behaviour.Size = new System.Drawing.Size(336, 87);
+            this.notesBox_behaviour.TabIndex = 47;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Copperplate Gothic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label9.Location = new System.Drawing.Point(290, 431);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(181, 18);
+            this.label9.TabIndex = 48;
+            this.label9.Text = "Electrophysiology";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Copperplate Gothic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label14.Location = new System.Drawing.Point(290, 552);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(102, 18);
+            this.label14.TabIndex = 49;
+            this.label14.Text = "Behaviour";
+            // 
+            // startPreSleep
+            // 
+            this.startPreSleep.AutoSize = true;
+            this.startPreSleep.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.startPreSleep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.startPreSleep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startPreSleep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(0)))));
+            this.startPreSleep.Location = new System.Drawing.Point(293, 22);
+            this.startPreSleep.Name = "startPreSleep";
+            this.startPreSleep.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.startPreSleep.Size = new System.Drawing.Size(115, 28);
+            this.startPreSleep.TabIndex = 50;
+            this.startPreSleep.Text = "Start Pre-Sleep";
+            this.startPreSleep.UseVisualStyleBackColor = false;
+            this.startPreSleep.Click += new System.EventHandler(this.startPreSleep_Click);
+            // 
+            // stopPreSleep
+            // 
+            this.stopPreSleep.AutoSize = true;
+            this.stopPreSleep.BackColor = System.Drawing.Color.LightSalmon;
+            this.stopPreSleep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.stopPreSleep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopPreSleep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(0)))));
+            this.stopPreSleep.Location = new System.Drawing.Point(520, 22);
+            this.stopPreSleep.Name = "stopPreSleep";
+            this.stopPreSleep.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.stopPreSleep.Size = new System.Drawing.Size(116, 28);
+            this.stopPreSleep.TabIndex = 51;
+            this.stopPreSleep.Text = "Stop Pre-Sleep";
+            this.stopPreSleep.UseVisualStyleBackColor = false;
+            this.stopPreSleep.Click += new System.EventHandler(this.stopPreSleep_Click);
+            // 
+            // startPostSleep
+            // 
+            this.startPostSleep.AutoSize = true;
+            this.startPostSleep.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.startPostSleep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.startPostSleep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startPostSleep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(0)))));
+            this.startPostSleep.Location = new System.Drawing.Point(293, 29);
+            this.startPostSleep.Name = "startPostSleep";
+            this.startPostSleep.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.startPostSleep.Size = new System.Drawing.Size(115, 26);
+            this.startPostSleep.TabIndex = 52;
+            this.startPostSleep.Text = "Start Post-Sleep";
+            this.startPostSleep.UseVisualStyleBackColor = false;
+            this.startPostSleep.Visible = false;
+            this.startPostSleep.Click += new System.EventHandler(this.startPostSleep_Click);
+            // 
+            // stopPostSleep
+            // 
+            this.stopPostSleep.AllowDrop = true;
+            this.stopPostSleep.AutoSize = true;
+            this.stopPostSleep.BackColor = System.Drawing.Color.LightSalmon;
+            this.stopPostSleep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.stopPostSleep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopPostSleep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(0)))));
+            this.stopPostSleep.Location = new System.Drawing.Point(520, 28);
+            this.stopPostSleep.Name = "stopPostSleep";
+            this.stopPostSleep.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.stopPostSleep.Size = new System.Drawing.Size(116, 26);
+            this.stopPostSleep.TabIndex = 53;
+            this.stopPostSleep.Text = "Stop Post-Sleep";
+            this.stopPostSleep.UseVisualStyleBackColor = false;
+            this.stopPostSleep.Visible = false;
+            this.stopPostSleep.Click += new System.EventHandler(this.stopPostSleep_Click);
             // 
             // W_Maze_Gui
             // 
@@ -790,6 +850,13 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.ClientSize = new System.Drawing.Size(927, 715);
+            this.Controls.Add(this.stopPostSleep);
+            this.Controls.Add(this.startPostSleep);
+            this.Controls.Add(this.stopPreSleep);
+            this.Controls.Add(this.startPreSleep);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.notesBox_behaviour);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.panel14);
             this.Controls.Add(this.recordButton);
@@ -798,8 +865,6 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel12);
-            this.Controls.Add(this.panel11);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.cleanButton);
             this.Controls.Add(this.fillButton);
             this.Controls.Add(this.label11);
@@ -824,6 +889,7 @@
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ratSelectionLabel);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -851,8 +917,6 @@
             this.panel9.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.panel13.ResumeLayout(false);
@@ -911,9 +975,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button fillButton;
         private System.Windows.Forms.Button cleanButton;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Label corOutNum;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label percentCorrect;
@@ -924,9 +985,15 @@
         private System.Windows.Forms.Button recordButton;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label inboundPercent;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox notesBox_behaviour;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button startPreSleep;
+        private System.Windows.Forms.Button stopPreSleep;
+        private System.Windows.Forms.Button startPostSleep;
+        private System.Windows.Forms.Button stopPostSleep;
     }
 }
 

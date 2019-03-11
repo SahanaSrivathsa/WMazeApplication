@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Drawing.Imaging;
@@ -18,6 +19,8 @@ using TestStack.White.InputDevices;
 using TestStack.White.UIItems.WindowItems;
 using TestStack.White.WindowsAPI;
 using System.Linq;
+using MNetCom;
+
 //using System.Imaging;
 
 namespace W_Maze_Gui
@@ -29,11 +32,12 @@ namespace W_Maze_Gui
 
         private readonly Form exitConfirm = new ExitConfirm();
         private readonly Form reminderWindow;
-        private readonly Form modeWindow;
+        //private readonly Form modeWindow;
         private readonly Dictionary<string, string> name_to_age = new Dictionary<string, string>();
         private readonly Dictionary<string, int> name_to_session = new Dictionary<string, int>();
         private readonly List<string> ratName = new List<string>();
         private int _elapsed_time;
+        private string run_time;
         private bool _exiting;
         public int correctCnt;
         public string day;
@@ -67,10 +71,14 @@ namespace W_Maze_Gui
         private bool _recording;
         public bool acquiring = false;
         public string notesReformatted;
+        public string notes_behaviourReformatted;
         public string experimenterReformatted;
         public bool train;
+        public static MNetCom.MNetComClient mNetComClient;
 
-       
+
+
+
         private Window NeuraLynxWindow { get; }
 
         public W_Maze_Gui()
@@ -98,11 +106,15 @@ namespace W_Maze_Gui
             }
             CsvFiles.CloseRatDataCsv();
 
+            mNetComClient = new MNetCom.MNetComClient();
+
+
+
 
             InitializeComponent();
             foreach (var rat in ratName) RatSelection.Items.Add(rat);
             reminderWindow = new NLXReminder(this);
-            modeWindow = new appMode(this);
+            //modeWindow = new appMode(this);
             confirm();
             NeuraLynxWindow = Desktop.Instance.Windows().FirstOrDefault(w => w.Name.Contains("Neuralynx"));
             
@@ -125,7 +137,7 @@ namespace W_Maze_Gui
             minute = fixDateTime(moment.Minute);
             hour = fixDateTime(moment.Hour);
         }
-
+        
         public void listen_to_arduino(object sender, DoWorkEventArgs e)
         //The "listener" that is the mediator between the worker (Felix) and the updater
         {
@@ -142,6 +154,7 @@ namespace W_Maze_Gui
         private void SelectButtonClick(object sender, EventArgs e)
         //When you click "Select" you lock in the rat number and info
         {
+            
             cleanButton.Show();
             if (RatSelection.SelectedIndex >= 0)
             {
@@ -188,15 +201,49 @@ namespace W_Maze_Gui
             SessionHasBegun = true;
             if (ratWasChosen)
             {
+                if (recordButton.BackColor != Color.AliceBlue)
+                {
+                    MessageBox.Show(this,  "Check if Cheetah is Recording Session", "Cheetah Recording", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                }
+                string reply = "";
+                if (!(mNetComClient.SendCommand("-PostEvent \"StartWM\" 0 0", ref reply)))
+                {
+                    MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+                else
+                {
+                    String[] parsedReplyString = reply.Split(' ');
+                    if (0 < parsedReplyString.GetLength(0))
+                    {
+                        if (parsedReplyString[0].Equals("-1"))
+                        {
+                            MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        }
+                    }
+
+                }
                 startButton.ForeColor = Color.AliceBlue;
+
+                _elapsed_time = 0;
                 Recording_Time.Enabled = true;
                 updateTime();
+                startPreSleep.Visible = false;
+                stopPreSleep.Visible = false;
+                startButton.Enabled = false;
+                
+                //Felix(The BackroundWorker)
+                felix.DoWork += listen_to_arduino;
+                felix.RunWorkerCompleted += run_worker_completed;
+                felix.RunWorkerAsync();
+
             }
+
             else
             {
                 var ratWindow = new SelectRatWindow();
                 ratWindow.StartPosition = FormStartPosition.CenterParent;
                 ratWindow.ShowDialog();
+                
             }
 
             try //sends a message to the UNO to reinitialize variables
@@ -208,41 +255,14 @@ namespace W_Maze_Gui
             {
             }
 
-            //Felix(The BackroundWorker)
-            felix.DoWork += listen_to_arduino;
-            felix.RunWorkerCompleted += run_worker_completed;
-            felix.RunWorkerAsync();
+            
+            
 
-            startButton.Enabled = false;
+
 
 
         }
-        private void StartNeuraLynxAcquire()
-        {
-            if (acquiring)
-            {
-                NeuraLynxWindow.Focus(DisplayState.Maximized);
-                NeuraLynxWindow.DisplayState = DisplayState.Maximized;
-                Keyboard.Instance.HoldKey(KeyboardInput.SpecialKeys.CONTROL);
-                Keyboard.Instance.Send("a", Desktop.Instance.ActionListener);
-                Keyboard.Instance.LeaveAllKeys();
-            }
-        }
 
-        private void StartNeuraLynxRecord()
-        {
-            if(!acquiring)
-            {
-                acquiring = true;
-               StartNeuraLynxAcquire(); 
-            }
-            NeuraLynxWindow.Focus(DisplayState.Maximized);
-            NeuraLynxWindow.DisplayState = DisplayState.Maximized;
-            Keyboard.Instance.HoldKey(KeyboardInput.SpecialKeys.CONTROL);
-            Keyboard.Instance.Send("r", Desktop.Instance.ActionListener);
-            Keyboard.Instance.LeaveAllKeys();
-            _recording = !_recording;
-        }
 
         private void increment_time(object sender, EventArgs e) //Allows the timer to tick up
         {
@@ -263,13 +283,30 @@ namespace W_Maze_Gui
         {
             startButton.ForeColor = Color.FromArgb(0, 40, 0);
             Recording_Time.Enabled = false;
-            if (acquiring)
+            run_time = display_time.Text;
+            _elapsed_time = 0;
+
+            string reply = "";
+            if (!(mNetComClient.SendCommand("-PostEvent \"StopWM\" 0 0", ref reply)))
             {
-                StartNeuraLynxRecord();
-                StartNeuraLynxAcquire();
+                MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                String[] parsedReplyString = reply.Split(' ');
+                if (0 < parsedReplyString.GetLength(0))
+                {
+                    if (parsedReplyString[0].Equals("-1"))
+                    {
+                        MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+
             }
             stopButton.Enabled = false;
             startButton.Enabled = false;
+            startPostSleep.Visible = true;
+            stopPostSleep.Visible = true;
         }
 
         private void ratSelectionBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -286,17 +323,18 @@ namespace W_Maze_Gui
                 Show();
                 saveButton.ForeColor = Color.DarkGray;
                 saveButton.Enabled = false;
-                notesReformatted =  notesBox.Text.Replace("," , "");
-                experimenterReformatted = experimenterBox.Text.Replace(",", "");
+                notesReformatted =  notesBox.Text.Replace("," , ";");
+                notes_behaviourReformatted=notesBox_behaviour.Text.Replace(",", ";");
+                experimenterReformatted = experimenterBox.Text.Replace(",", ";");
                 if (train)
                 {
-                    CsvFiles.trainingCsv.Write($"{DateTime.Now},{experimenterReformatted},{display_time.Text},{correctNum.Text},{notesReformatted}\n");
+                    CsvFiles.trainingCsv.Write($"{DateTime.Now},{experimenterReformatted},{display_time.Text},{correctNum.Text},{notesReformatted},{notes_behaviourReformatted}\n");
                     CsvFiles.trainingCsv.Close();
                 }
                 else
                 {
                     CsvFiles.SessionCsv.Write(
-                        $"{sessionLabel.Text},{experimenterReformatted},{DateTime.Now},{display_time.Text},{correctNum.Text},{corOutNum.Text},{initialNum.Text},{outboundNum.Text},{inboundNum.Text},{repeatNum.Text},{totalErrNum.Text},{totalNum.Text},{notesReformatted}\n");
+                        $"{sessionLabel.Text},{experimenterReformatted},{DateTime.Now},{run_time},{correctNum.Text},{initialNum.Text},{outboundNum.Text},{inboundNum.Text},{repeatNum.Text},{totalErrNum.Text},{totalNum.Text},{notesReformatted},{notes_behaviourReformatted}\n");
                     CsvFiles.Close();
                     if (
                         !Directory.Exists(
@@ -401,8 +439,8 @@ namespace W_Maze_Gui
         {
             reminderWindow.StartPosition = FormStartPosition.CenterParent;
             reminderWindow.ShowDialog();
-            modeWindow.StartPosition = FormStartPosition.CenterParent;
-            modeWindow.ShowDialog();
+            //modeWindow.StartPosition = FormStartPosition.CenterParent;
+            //modeWindow.ShowDialog();
         }
         public static void sendMessage(string button) //handles messages to be sent to the UNO for filling/cleaning
         {
@@ -499,6 +537,7 @@ namespace W_Maze_Gui
         public void run_worker_completed(object sender, RunWorkerCompletedEventArgs e)
         //The updater that updates the GUI with the new info and writes to the Timestamp CSV
         {
+            
             if (!e.Cancelled && (e.Error == null) && (e.Result != null) && SessionHasBegun)
             {
                 var messageType = e.Result.ToString().Substring(0, 1);
@@ -567,7 +606,7 @@ namespace W_Maze_Gui
                                     case "c":
                                         CsvFiles.TimestampCsv.Write($"1,Correct,{DateTime.Now - startdTime}\n");
                                         corOut++;
-                                        corOutNum.Text = corOut.ToString();
+                                        //corOutNum.Text = corOut.ToString();
                                         percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
                                             MidpointRounding.AwayFromZero);
                                         percentCorrect.Text = $"{percentCor.ToString()}%";
@@ -639,7 +678,7 @@ namespace W_Maze_Gui
                                     case "c":
                                         CsvFiles.TimestampCsv.Write($"3,Correct,{DateTime.Now - startdTime}\n");
                                         corOut++;
-                                        corOutNum.Text = corOut.ToString();
+                                        //corOutNum.Text = corOut.ToString();
                                         percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
                                             MidpointRounding.AwayFromZero);
                                         percentCorrect.Text = $"{percentCor.ToString()}%";
@@ -673,36 +712,59 @@ namespace W_Maze_Gui
                 }
             
         }
-
+           
             if (!felix.IsBusy)
                 felix.RunWorkerAsync();
         }
 
         private void acquireButton_Click(object sender, EventArgs e)
         {
-      
-            StartNeuraLynxAcquire();
+            string reply = "";
+            if (acquireButton.BackColor == Color.AliceBlue)
+            {
+                mNetComClient.SendCommand("-StopAcquisition", ref reply);
+                acquireButton.BackColor = Color.FromArgb(38, 38, 38);
+                recordButton.BackColor = Color.FromArgb(38, 38, 38);
+            }
+            else
+            {
+                mNetComClient.SendCommand("-StartAcquisition", ref reply);
+                acquireButton.BackColor = Color.AliceBlue;
+            }   
+            
+            
+            
         }
 
         public void recordButton_Click(object sender, EventArgs e)
         {
-            
-            StartNeuraLynxRecord();
-            recordButton.Enabled = false;
-            acquireButton.Enabled = false;
-            StartButtonClick(sender,e);
+
+            string reply = "";
+            if (recordButton.BackColor == Color.AliceBlue)
+            {
+                mNetComClient.SendCommand("-StopRecording", ref reply);
+                recordButton.BackColor = Color.FromArgb(38, 38, 38);
+            }
+            else
+            {
+                mNetComClient.SendCommand("-StartRecording", ref reply);
+                recordButton.BackColor = Color.AliceBlue;
+
+            }
 
         }
 
         public void disable_NLX()
         {
+            startPreSleep.Visible = false;
+            stopPreSleep.Visible = false;
             recordButton.Enabled = false;
             acquireButton.Enabled = false;
         }
 
         public void trainMode()
         {
-            corOutNum.Visible = false;
+            
             inboundNum.Visible = false;
             inboundPercent.Visible = false;
             initialNum.Visible = false;
@@ -711,17 +773,14 @@ namespace W_Maze_Gui
             label12.Visible = false;
             label13.Visible = false;
             label15.Visible = false;
-            label16.Visible = false;
             label5.Visible = false;
             label6.Visible = false;
             label7.Visible = false;
             label8.Visible = false;
-            label9.Visible = false;
             totalNum.Visible = false;
             nextCorrect.Visible = false;
             outboundNum.Visible = false;
             panel10.Visible = false;
-            panel11.Visible = false;
             panel12.Visible = false;
             panel13.Visible = false;
             panel14.Visible = false;
@@ -736,5 +795,111 @@ namespace W_Maze_Gui
             totalIncorrect.Visible = false;
         }
 
+        private void startPreSleep_Click(object sender, EventArgs e)
+        {
+            if (recordButton.BackColor != Color.AliceBlue)
+            {
+                MessageBox.Show(this, "Cheetah Recording", "Check if Cheetah is Recording Session", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+            }
+            _elapsed_time = 0;
+            Recording_Time.Enabled = true;
+            updateTime();
+            startPreSleep.ForeColor = Color.GhostWhite;
+            startPreSleep.BackColor = Color.SeaGreen;
+            string reply = "";
+            //mNetComClient.SendCommand("-PostEvent \"StartSleepPre\" 0 0", ref reply);
+            if (!(mNetComClient.SendCommand("-PostEvent \"StartSleepPre\" 0 0", ref reply)))
+            {
+                MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                String[] parsedReplyString = reply.Split(' ');
+                if (0 < parsedReplyString.GetLength(0))
+                {
+                    if (parsedReplyString[0].Equals("-1"))
+                    {
+                        MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+
+            }
+            
+        }
+            
+        
+
+        private void stopPreSleep_Click(object sender, EventArgs e)
+        {
+            Recording_Time.Enabled = false;
+            _elapsed_time = 0;
+            stopPreSleep.ForeColor = Color.GhostWhite;
+            string reply = "";
+            if (!(mNetComClient.SendCommand("-PostEvent \"StopSleepPre\" 0 0", ref reply)))
+            {
+                MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                String[] parsedReplyString = reply.Split(' ');
+                if (0 < parsedReplyString.GetLength(0))
+                {
+                    if (parsedReplyString[0].Equals("-1"))
+                    {
+                        MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+
+            }
+        }
+
+        private void startPostSleep_Click(object sender, EventArgs e)
+        {
+            _elapsed_time = 0;
+            Recording_Time.Enabled = true;
+            updateTime();
+            startPostSleep.ForeColor = Color.GhostWhite;
+            startPostSleep.BackColor = Color.SeaGreen;
+            string reply = "";
+            if (!(mNetComClient.SendCommand("-PostEvent \"StartSleepPost\" 0 0", ref reply)))
+            {
+                MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                String[] parsedReplyString = reply.Split(' ');
+                if (0 < parsedReplyString.GetLength(0))
+                {
+                    if (parsedReplyString[0].Equals("-1"))
+                    {
+                        MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+
+            }
+        }
+
+        private void stopPostSleep_Click(object sender, EventArgs e)
+        {
+            Recording_Time.Enabled = false;
+            stopPostSleep.ForeColor = Color.GhostWhite;
+            string reply = "";
+            if (!(mNetComClient.SendCommand("-PostEvent \"StopSleepPost\" 0 0", ref reply)))
+            {
+                MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                String[] parsedReplyString = reply.Split(' ');
+                if (0 < parsedReplyString.GetLength(0))
+                {
+                    if (parsedReplyString[0].Equals("-1"))
+                    {
+                        MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+
+            }
+        }
     }
 }
