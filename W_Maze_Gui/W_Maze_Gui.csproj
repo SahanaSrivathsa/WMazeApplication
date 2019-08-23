@@ -189,6 +189,12 @@
       <DependentUpon>appMode.cs</DependentUpon>
     </Compile>
     <Compile Include="CsvFiles.cs" />
+    <Compile Include="Ephys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ephys.Designer.cs">
+      <DependentUpon>Ephys.cs</DependentUpon>
+    </Compile>
     <Compile Include="exitConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,12 @@
       <DependentUpon>FillFeederWin.cs</DependentUpon>
     </Compile>
     <Compile Include="FormConsole.cs" />
+    <Compile Include="NewRat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewRat.Designer.cs">
+      <DependentUpon>NewRat.cs</DependentUpon>
+    </Compile>
     <Compile Include="NLXReminder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,11 +248,17 @@
     <EmbeddedResource Include="appMode.resx">
       <DependentUpon>appMode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ephys.resx">
+      <DependentUpon>Ephys.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="exitConfirm.resx">
       <DependentUpon>exitConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FillFeederWin.resx">
       <DependentUpon>FillFeederWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewRat.resx">
+      <DependentUpon>NewRat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NLXReminder.resx">
       <DependentUpon>NLXReminder.cs</DependentUpon>

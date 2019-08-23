@@ -33,9 +33,9 @@ namespace W_Maze_Gui
         private readonly Form exitConfirm = new ExitConfirm();
         private readonly Form reminderWindow;
         //private readonly Form modeWindow;
-        private readonly Dictionary<string, string> name_to_age = new Dictionary<string, string>();
-        private readonly Dictionary<string, int> name_to_session = new Dictionary<string, int>();
-        private readonly List<string> ratName = new List<string>();
+        private Dictionary<string, string> name_to_age = new Dictionary<string, string>();
+        private Dictionary<string, int> name_to_session = new Dictionary<string, int>();
+        private List<string> ratName = new List<string>();
         private int _elapsed_time;
         private string run_time;
         private bool _exiting;
@@ -53,6 +53,8 @@ namespace W_Maze_Gui
         public string ratbeingtested;
         private List<string> ratSession = new List<string>();
         private bool ratWasChosen;
+        public bool selectedRat = false;
+        public static dynamic chosenRat;
         public double repeatCnt;
         public bool saved;
         private bool SessionHasBegun;
@@ -61,6 +63,7 @@ namespace W_Maze_Gui
         public double totes;
         public string year;
         public double corOut = 0;
+        public double corInb = 0;
         public double percentCor = 0;
         public double inboundPercentCor = 0;
         public int last = 0;
@@ -75,6 +78,9 @@ namespace W_Maze_Gui
         public string experimenterReformatted;
         public bool train;
         public static MNetCom.MNetComClient mNetComClient;
+        public static bool recordingStatus = true;
+        public static string newRatNo;
+        public static string newRatAge;
 
 
 
@@ -82,7 +88,9 @@ namespace W_Maze_Gui
         private Window NeuraLynxWindow { get; }
 
         public W_Maze_Gui()
-        {
+        {   
+
+            //Arduino Basic commands set and connected to port
             CsvFiles.OpenRatDataCsv(); //open RatData.csv so we can read from it and access Rat info
             serialPort.BaudRate = 9600;
             serialPort.PortName = "COM3";
@@ -95,6 +103,8 @@ namespace W_Maze_Gui
             serialPort.DiscardInBuffer();
             serialPort.DiscardOutBuffer();
 
+
+        
             while (!CsvFiles.RatdataReader.EndOfStream)
             //this reads the RatData.csv file and makes a dictionary for the ages and for the session number
             {
@@ -106,18 +116,28 @@ namespace W_Maze_Gui
             }
             CsvFiles.CloseRatDataCsv();
 
+            //Initializes MNetcom to connect to NETCOM for ONLINE connection with CHEETAH
             mNetComClient = new MNetCom.MNetComClient();
+            
 
 
 
 
             InitializeComponent();
-            foreach (var rat in ratName) RatSelection.Items.Add(rat);
+            foreach (var rat in ratName) this.RatSelection.Items.Add(rat);
+            this.RatSelection.Items.Add("New Rat");  //option to create new rat
+
+            //Displays time and date on GUI window    
+            rat_datelabel.Text = DateTime.Now.ToShortDateString();
+            rat_timelabel.Text = DateTime.Now.ToShortTimeString();
+
+
+
             reminderWindow = new NLXReminder(this);
             //modeWindow = new appMode(this);
             confirm();
-            NeuraLynxWindow = Desktop.Instance.Windows().FirstOrDefault(w => w.Name.Contains("Neuralynx"));
-            
+            //if (recordingStatus == false) { ephys.Hide(); }
+
         }
 
         private static string fixDateTime(int x)
@@ -129,6 +149,9 @@ namespace W_Maze_Gui
         {
             cleanButton.Hide();
             selectButton.Enabled = false;
+            ephys.Hide();
+            startButton.Hide();
+            stopButton.Hide();
 
             var moment = new DateTime();
             year = moment.Year.ToString();
@@ -160,17 +183,40 @@ namespace W_Maze_Gui
             {
                 selectButton.Hide();
                 RatSelection.Hide();
-                saveButton.Enabled = true;
-                ratSelectionLabel.Text = $"{ratName[RatSelection.SelectedIndex]}";
-                var chosenRat = ratName[RatSelection.SelectedIndex];
-                ageLabel.Text = name_to_age[chosenRat];
-                if (train)
+                
+                if (recordingStatus == true)
                 {
-                    sessionLabel.Text = "TRAINING";
-                    CsvFiles.OpenTrainingCsv(chosenRat);
+                    startPreSleep.Show();
+                    stopPreSleep.Show();
+                }
+                ephys.Show();
+                startButton.Show();
+                stopButton.Show();
+
+                selectedRat = true;
+                saveButton.Enabled = true;
+
+                if (RatSelection.Text == "New Rat")
+                {
+                    var rat_entry = new NewRat();
+                    rat_entry.ShowDialog();
+                    ratName.Add(newRatNo);
+                    Console.WriteLine($"The NEW RAT NO IS {newRatNo}");
+                    name_to_age.Add(newRatNo,newRatAge);
+                    name_to_session.Add(newRatNo, 0);
+
+                    chosenRat = newRatNo;
+                    ratSelectionLabel.Text = newRatNo;
+                    
                 }
                 else
                 {
+                    ratSelectionLabel.Text = $"{ratName[RatSelection.SelectedIndex]}";
+                    chosenRat = ratName[RatSelection.SelectedIndex];
+                }
+                    
+                ageLabel.Text = name_to_age[chosenRat];
+                
                     sessionLabel.Text = name_to_session[chosenRat].ToString();
                     CsvFiles.OpenSessionCsv(chosenRat);
                     CsvFiles.OpenWriteToRatData();
@@ -185,7 +231,7 @@ namespace W_Maze_Gui
                     CsvFiles.OpenTimestampCsv(chosenRat, sessionNumber);
                     CsvFiles.TimestampCsv.Write("Feeder,Type,Timestamp\n");
                     CsvFiles.RatdataClose();
-                }
+                
                 
                 ratWasChosen = true;
                 ratbeingtested = ratName[RatSelection.SelectedIndex];
@@ -198,17 +244,30 @@ namespace W_Maze_Gui
         //Clicking "Start" starts the timer and you can only start after you have selected a rat and locked it in
         {
             fillButton.Hide();
-            SessionHasBegun = true;
+            
             if (ratWasChosen)
             {
-                if (recordButton.BackColor != Color.AliceBlue)
+               
+
+                Recording_Time.Enabled = true;
+                SessionHasBegun = true;
+                updateTime();
+                if (recordButton.BackColor != Color.AliceBlue && recordingStatus == true)
                 {
-                    MessageBox.Show(this,  "Check if Cheetah is Recording Session", "Cheetah Recording", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (MessageBox.Show(this, "Is Cheetah Recording", "Cheetah Recording", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.No)
+                    {
+                        SessionHasBegun = false;
+                    }
+                    else { SessionHasBegun = true; }
                 }
+                else { SessionHasBegun = true; }
+
+
                 string reply = "";
-                if (!(mNetComClient.SendCommand("-PostEvent \"StartWM\" 0 0", ref reply)))
+                if (!(mNetComClient.SendCommand("-PostEvent \"StartWM\" 0 0", ref reply)) && recordingStatus == true)
                 {
-                    MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
                 else
                 {
@@ -217,24 +276,32 @@ namespace W_Maze_Gui
                     {
                         if (parsedReplyString[0].Equals("-1"))
                         {
-                            MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                         }
                     }
 
                 }
-                startButton.ForeColor = Color.AliceBlue;
 
-                _elapsed_time = 0;
-                Recording_Time.Enabled = true;
-                updateTime();
-                startPreSleep.Visible = false;
-                stopPreSleep.Visible = false;
-                startButton.Enabled = false;
+                if (SessionHasBegun == true)
+                {
+                    startButton.ForeColor = Color.AliceBlue;
+
+                    _elapsed_time = 0;
+                    Recording_Time.Enabled = true;
+                    updateTime();
+                    startPreSleep.Visible = false;
+                    stopPreSleep.Visible = false;
+                    startButton.Enabled = false;
+
+                    //Felix(The BackroundWorker)
+                    felix.DoWork += listen_to_arduino;
+                    felix.RunWorkerCompleted += run_worker_completed;
+                    felix.RunWorkerAsync();
+                }
                 
-                //Felix(The BackroundWorker)
-                felix.DoWork += listen_to_arduino;
-                felix.RunWorkerCompleted += run_worker_completed;
-                felix.RunWorkerAsync();
+                
+                
 
             }
 
@@ -254,11 +321,6 @@ namespace W_Maze_Gui
             catch (Exception)
             {
             }
-
-            
-            
-
-
 
 
         }
@@ -287,32 +349,38 @@ namespace W_Maze_Gui
             _elapsed_time = 0;
 
             string reply = "";
-            if (!(mNetComClient.SendCommand("-PostEvent \"StopWM\" 0 0", ref reply)))
+            if (recordingStatus == true)
             {
-                MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            }
-            else
-            {
-                String[] parsedReplyString = reply.Split(' ');
-                if (0 < parsedReplyString.GetLength(0))
+                if (!(mNetComClient.SendCommand("-PostEvent \"StopWM\" 0 0", ref reply)))
                 {
-                    if (parsedReplyString[0].Equals("-1"))
-                    {
-                        MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                    }
+                    MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
+                else
+                {
+                    String[] parsedReplyString = reply.Split(' ');
+                    if (0 < parsedReplyString.GetLength(0))
+                    {
+                        if (parsedReplyString[0].Equals("-1"))
+                        {
+                            MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        }
+                    }
 
+                }
+                startPostSleep.Visible = true;
+                stopPostSleep.Visible = true;
             }
+            
             stopButton.Enabled = false;
             startButton.Enabled = false;
-            startPostSleep.Visible = true;
-            stopPostSleep.Visible = true;
+            
         }
 
         private void ratSelectionBox_SelectedIndexChanged(object sender, EventArgs e)
         //Enables the select button when you choose a rat from the combo box
         {
             selectButton.Enabled = true;
+
         }
 
         private void SaveButtonClick(object sender, EventArgs e)
@@ -323,49 +391,30 @@ namespace W_Maze_Gui
                 Show();
                 saveButton.ForeColor = Color.DarkGray;
                 saveButton.Enabled = false;
-                notesReformatted =  notesBox.Text.Replace("," , ";");
+                //notesReformatted =  notesBox.Text.Replace("," , ";");
                 notes_behaviourReformatted=notesBox_behaviour.Text.Replace(",", ";");
                 experimenterReformatted = experimenterBox.Text.Replace(",", ";");
-                if (train)
-                {
-                    CsvFiles.trainingCsv.Write($"{DateTime.Now},{experimenterReformatted},{display_time.Text},{correctNum.Text},{notesReformatted},{notes_behaviourReformatted}\n");
-                    CsvFiles.trainingCsv.Close();
-                }
-                else
-                {
+                
+                
                     CsvFiles.SessionCsv.Write(
-                        $"{sessionLabel.Text},{experimenterReformatted},{DateTime.Now},{run_time},{correctNum.Text},{initialNum.Text},{outboundNum.Text},{inboundNum.Text},{repeatNum.Text},{totalErrNum.Text},{totalNum.Text},{notesReformatted},{notes_behaviourReformatted}\n");
+                        $"{sessionLabel.Text},{experimenterReformatted},{DateTime.Now},{run_time},{correctNum.Text},{initialNum.Text},{outboundNum.Text},{inboundNum.Text},{repeatNum.Text},{totalErrNum.Text},{totalNum.Text},{notes_behaviourReformatted}\n");
                     CsvFiles.Close();
                     if (
                         !Directory.Exists(
-                            $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots"))
+                            $@"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots"))
                         Directory.CreateDirectory(
-                            $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots");
+                            $@"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots");
                     var bmpScreenCapture = new Bitmap(Width, Height);
                     DrawToBitmap(bmpScreenCapture, new Rectangle(0, 0, bmpScreenCapture.Width, bmpScreenCapture.Height));
                     bmpScreenCapture.Save(
-                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots\GUIscreenshot_{ratName
+                        $@"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\{ratName[RatSelection.SelectedIndex]}\ScreenShots\GUIscreenshot_{ratName
                             [RatSelection.SelectedIndex]}_Session{sessionNumber}.gif",
                         ImageFormat.Gif);
                     
-                }
+                
                 saved = true;
 
 
-                if (
-                    File.Exists(
-                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\Videos\Composite_{year}{month}{day}_{hour}{minute}"))
-                {
-                    if (
-                        !Directory.Exists(
-                            $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\Videos\{RatSelection.SelectedIndex}"))
-                        Directory.CreateDirectory(
-                            $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\Videos\{RatSelection.SelectedIndex}");
-
-                    File.Move(
-                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\Current Cohort Videos\Composite_(NTSC){year}{month}{day}_{hour}{minute}.ts",
-                        $@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\Current Cohort Videos\{RatSelection.SelectedIndex}\{RatSelection.SelectedIndex}_{sessionLabel}.mpeg");
-                }
             }
         }
 
@@ -607,6 +656,7 @@ namespace W_Maze_Gui
                                         CsvFiles.TimestampCsv.Write($"1,Correct,{DateTime.Now - startdTime}\n");
                                         corOut++;
                                         //corOutNum.Text = corOut.ToString();
+                                        outbound_num_corr.Text = $"{corOut.ToString()}";
                                         percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
                                             MidpointRounding.AwayFromZero);
                                         percentCorrect.Text = $"{percentCor.ToString()}%";
@@ -636,6 +686,7 @@ namespace W_Maze_Gui
                                 {
                                     case "c":
                                         CsvFiles.TimestampCsv.Write($"2,Correct,{DateTime.Now - startdTime}\n");
+                                        corInb++;
                                         if (last == 0)
                                         {
                                             nextCorrect.Text = "Feeder 1/3";
@@ -648,6 +699,7 @@ namespace W_Maze_Gui
                                         {
                                             nextCorrect.Text = "Feeder 1";
                                         }
+                                        inbound_num_corr.Text = $"{corInb.ToString()}";
                                         inboundPercentCor = Math.Round(
                                             (((correctCnt - corOut) / (inboundCnt + correctCnt - corOut)) * 100), 0,
                                             MidpointRounding.AwayFromZero);
@@ -784,7 +836,6 @@ namespace W_Maze_Gui
             panel12.Visible = false;
             panel13.Visible = false;
             panel14.Visible = false;
-            panel5.Visible = false;
             panel6.Visible = false;
             panel7.Visible = false;
             panel8.Visible = false;
@@ -900,6 +951,22 @@ namespace W_Maze_Gui
                 }
 
             }
+        }
+
+        private void rat_timelabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ephys_Click(object sender, EventArgs e)
+        {
+            var ephys_window = new Ephys();
+            ephys_window.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

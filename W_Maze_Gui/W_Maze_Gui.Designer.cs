@@ -49,7 +49,6 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.repeatNum = new System.Windows.Forms.Label();
             this.inboundNum = new System.Windows.Forms.Label();
@@ -63,7 +62,6 @@
             this.totalNum = new System.Windows.Forms.Label();
             this.experimenterLabel = new System.Windows.Forms.Label();
             this.experimenterBox = new System.Windows.Forms.TextBox();
-            this.notesBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.selectButton = new System.Windows.Forms.Button();
             this.ratSelectionLabel = new System.Windows.Forms.Label();
@@ -87,12 +85,20 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.notesBox_behaviour = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.startPreSleep = new System.Windows.Forms.Button();
             this.stopPreSleep = new System.Windows.Forms.Button();
             this.startPostSleep = new System.Windows.Forms.Button();
             this.stopPostSleep = new System.Windows.Forms.Button();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.rat_timelabel = new System.Windows.Forms.Label();
+            this.rat_datelabel = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.ephys = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.outbound_num_corr = new System.Windows.Forms.Label();
+            this.inbound_num_corr = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -105,6 +111,7 @@
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // startButton
@@ -114,7 +121,7 @@
             this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(0)))));
-            this.startButton.Location = new System.Drawing.Point(293, 238);
+            this.startButton.Location = new System.Drawing.Point(293, 199);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(129, 54);
             this.startButton.TabIndex = 1;
@@ -129,7 +136,7 @@
             this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stopButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.stopButton.Location = new System.Drawing.Point(502, 237);
+            this.stopButton.Location = new System.Drawing.Point(502, 198);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(127, 55);
             this.stopButton.TabIndex = 2;
@@ -166,7 +173,7 @@
             this.display_time.AutoSize = true;
             this.display_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.display_time.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.display_time.Location = new System.Drawing.Point(339, 97);
+            this.display_time.Location = new System.Drawing.Point(337, 79);
             this.display_time.MinimumSize = new System.Drawing.Size(200, 100);
             this.display_time.Name = "display_time";
             this.display_time.Size = new System.Drawing.Size(237, 100);
@@ -198,9 +205,9 @@
             // Correct
             // 
             this.Correct.AutoSize = true;
-            this.Correct.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Correct.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Correct.ForeColor = System.Drawing.SystemColors.Control;
-            this.Correct.Location = new System.Drawing.Point(3, 8);
+            this.Correct.Location = new System.Drawing.Point(3, 3);
             this.Correct.Name = "Correct";
             this.Correct.Size = new System.Drawing.Size(62, 18);
             this.Correct.TabIndex = 9;
@@ -247,7 +254,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(3, 71);
+            this.label3.Location = new System.Drawing.Point(3, 62);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 18);
             this.label3.TabIndex = 16;
@@ -268,7 +275,7 @@
             this.sessionLabel.AutoSize = true;
             this.sessionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sessionLabel.ForeColor = System.Drawing.Color.Cyan;
-            this.sessionLabel.Location = new System.Drawing.Point(112, 72);
+            this.sessionLabel.Location = new System.Drawing.Point(112, 62);
             this.sessionLabel.Name = "sessionLabel";
             this.sessionLabel.Size = new System.Drawing.Size(0, 18);
             this.sessionLabel.TabIndex = 17;
@@ -279,17 +286,20 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.sessionLabel);
-            this.panel1.Location = new System.Drawing.Point(702, 262);
+            this.panel1.ForeColor = System.Drawing.Color.LightCyan;
+            this.panel1.Location = new System.Drawing.Point(702, 326);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(192, 114);
+            this.panel1.Size = new System.Drawing.Size(192, 110);
             this.panel1.TabIndex = 18;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.ageLabel);
-            this.panel2.Location = new System.Drawing.Point(702, 259);
+            this.panel2.ForeColor = System.Drawing.Color.LightCyan;
+            this.panel2.Location = new System.Drawing.Point(702, 325);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(192, 58);
             this.panel2.TabIndex = 19;
@@ -299,7 +309,7 @@
             this.correctNum.AutoSize = true;
             this.correctNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.correctNum.ForeColor = System.Drawing.Color.Cyan;
-            this.correctNum.Location = new System.Drawing.Point(24, 6);
+            this.correctNum.Location = new System.Drawing.Point(24, 32);
             this.correctNum.Name = "correctNum";
             this.correctNum.Size = new System.Drawing.Size(19, 20);
             this.correctNum.TabIndex = 20;
@@ -311,7 +321,7 @@
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.Black;
-            this.saveButton.Location = new System.Drawing.Point(737, 606);
+            this.saveButton.Location = new System.Drawing.Point(747, 576);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(115, 44);
             this.saveButton.TabIndex = 21;
@@ -324,27 +334,23 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.feederVisitTitle);
-            this.panel3.Location = new System.Drawing.Point(12, 12);
+            this.panel3.Location = new System.Drawing.Point(12, 10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(187, 63);
+            this.panel3.Size = new System.Drawing.Size(187, 61);
             this.panel3.TabIndex = 22;
             // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Controls.Add(this.inbound_num_corr);
+            this.panel4.Controls.Add(this.outbound_num_corr);
+            this.panel4.Controls.Add(this.label9);
+            this.panel4.Controls.Add(this.label14);
             this.panel4.Controls.Add(this.Correct);
             this.panel4.Location = new System.Drawing.Point(12, 68);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(119, 38);
+            this.panel4.Size = new System.Drawing.Size(119, 81);
             this.panel4.TabIndex = 23;
-            // 
-            // panel5
-            // 
-            this.panel5.Location = new System.Drawing.Point(0, 39);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(187, 38);
-            this.panel5.TabIndex = 24;
             // 
             // panel6
             // 
@@ -358,9 +364,9 @@
             this.panel6.Controls.Add(this.label5);
             this.panel6.Controls.Add(this.initialNum);
             this.panel6.Controls.Add(this.totalIncorrect);
-            this.panel6.Location = new System.Drawing.Point(12, 104);
+            this.panel6.Location = new System.Drawing.Point(12, 145);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(187, 135);
+            this.panel6.Size = new System.Drawing.Size(187, 139);
             this.panel6.TabIndex = 24;
             // 
             // repeatNum
@@ -456,7 +462,7 @@
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel7.Controls.Add(this.Total);
-            this.panel7.Location = new System.Drawing.Point(12, 237);
+            this.panel7.Location = new System.Drawing.Point(12, 278);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(119, 41);
             this.panel7.TabIndex = 25;
@@ -476,8 +482,8 @@
             // 
             this.experimenterLabel.AutoSize = true;
             this.experimenterLabel.Font = new System.Drawing.Font("Copperplate Gothic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.experimenterLabel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.experimenterLabel.Location = new System.Drawing.Point(290, 347);
+            this.experimenterLabel.ForeColor = System.Drawing.Color.LightCyan;
+            this.experimenterLabel.Location = new System.Drawing.Point(290, 289);
             this.experimenterLabel.Name = "experimenterLabel";
             this.experimenterLabel.Size = new System.Drawing.Size(136, 18);
             this.experimenterLabel.TabIndex = 26;
@@ -489,29 +495,17 @@
             this.experimenterBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.experimenterBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.experimenterBox.ForeColor = System.Drawing.Color.White;
-            this.experimenterBox.Location = new System.Drawing.Point(468, 348);
+            this.experimenterBox.Location = new System.Drawing.Point(456, 290);
             this.experimenterBox.Name = "experimenterBox";
-            this.experimenterBox.Size = new System.Drawing.Size(137, 15);
+            this.experimenterBox.Size = new System.Drawing.Size(173, 15);
             this.experimenterBox.TabIndex = 27;
-            // 
-            // notesBox
-            // 
-            this.notesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.notesBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.notesBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notesBox.ForeColor = System.Drawing.Color.White;
-            this.notesBox.Location = new System.Drawing.Point(293, 457);
-            this.notesBox.Multiline = true;
-            this.notesBox.Name = "notesBox";
-            this.notesBox.Size = new System.Drawing.Size(336, 80);
-            this.notesBox.TabIndex = 28;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label4.Location = new System.Drawing.Point(405, 396);
+            this.label4.Location = new System.Drawing.Point(289, 335);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 21);
             this.label4.TabIndex = 29;
@@ -557,7 +551,7 @@
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel8.Controls.Add(this.totalNum);
-            this.panel8.Location = new System.Drawing.Point(128, 68);
+            this.panel8.Location = new System.Drawing.Point(128, 109);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(71, 210);
             this.panel8.TabIndex = 32;
@@ -568,16 +562,16 @@
             this.panel9.Controls.Add(this.correctNum);
             this.panel9.Location = new System.Drawing.Point(128, 68);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(71, 38);
+            this.panel9.Size = new System.Drawing.Size(71, 79);
             this.panel9.TabIndex = 0;
             // 
             // panel10
             // 
             this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel10.Controls.Add(this.totalErrNum);
-            this.panel10.Location = new System.Drawing.Point(128, 104);
+            this.panel10.Location = new System.Drawing.Point(128, 145);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(71, 135);
+            this.panel10.Size = new System.Drawing.Size(71, 134);
             this.panel10.TabIndex = 33;
             // 
             // label11
@@ -594,7 +588,7 @@
             this.fillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fillButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fillButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.fillButton.Location = new System.Drawing.Point(751, 422);
+            this.fillButton.Location = new System.Drawing.Point(702, 467);
             this.fillButton.Name = "fillButton";
             this.fillButton.Size = new System.Drawing.Size(86, 36);
             this.fillButton.TabIndex = 37;
@@ -607,7 +601,7 @@
             this.cleanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cleanButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cleanButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.cleanButton.Location = new System.Drawing.Point(751, 488);
+            this.cleanButton.Location = new System.Drawing.Point(808, 467);
             this.cleanButton.Name = "cleanButton";
             this.cleanButton.Size = new System.Drawing.Size(86, 36);
             this.cleanButton.TabIndex = 38;
@@ -619,7 +613,7 @@
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel12.Controls.Add(this.percentCorrect);
-            this.panel12.Location = new System.Drawing.Point(42, 333);
+            this.panel12.Location = new System.Drawing.Point(42, 370);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(125, 56);
             this.panel12.TabIndex = 40;
@@ -629,17 +623,17 @@
             this.percentCorrect.AutoSize = true;
             this.percentCorrect.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.percentCorrect.ForeColor = System.Drawing.Color.Cyan;
-            this.percentCorrect.Location = new System.Drawing.Point(33, 12);
+            this.percentCorrect.Location = new System.Drawing.Point(35, 13);
             this.percentCorrect.Name = "percentCorrect";
             this.percentCorrect.Size = new System.Drawing.Size(0, 25);
-            this.percentCorrect.TabIndex = 41;
+            this.percentCorrect.TabIndex = 0;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(17, 301);
+            this.label10.Location = new System.Drawing.Point(17, 335);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(185, 16);
             this.label10.TabIndex = 0;
@@ -650,7 +644,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.Control;
-            this.label12.Location = new System.Drawing.Point(29, 525);
+            this.label12.Location = new System.Drawing.Point(29, 537);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(156, 16);
             this.label12.TabIndex = 41;
@@ -660,7 +654,7 @@
             // 
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel13.Controls.Add(this.nextCorrect);
-            this.panel13.Location = new System.Drawing.Point(42, 567);
+            this.panel13.Location = new System.Drawing.Point(42, 580);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(125, 46);
             this.panel13.TabIndex = 42;
@@ -670,7 +664,7 @@
             this.nextCorrect.AutoSize = true;
             this.nextCorrect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nextCorrect.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.nextCorrect.Location = new System.Drawing.Point(24, 10);
+            this.nextCorrect.Location = new System.Drawing.Point(27, 11);
             this.nextCorrect.Name = "nextCorrect";
             this.nextCorrect.Size = new System.Drawing.Size(73, 20);
             this.nextCorrect.TabIndex = 43;
@@ -681,7 +675,7 @@
             this.acquireButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.acquireButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.acquireButton.ForeColor = System.Drawing.Color.Teal;
-            this.acquireButton.Location = new System.Drawing.Point(702, 198);
+            this.acquireButton.Location = new System.Drawing.Point(702, 159);
             this.acquireButton.Name = "acquireButton";
             this.acquireButton.Size = new System.Drawing.Size(78, 51);
             this.acquireButton.TabIndex = 43;
@@ -693,7 +687,7 @@
             // 
             this.recordButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.recordButton.ForeColor = System.Drawing.Color.Teal;
-            this.recordButton.Location = new System.Drawing.Point(819, 198);
+            this.recordButton.Location = new System.Drawing.Point(819, 159);
             this.recordButton.Name = "recordButton";
             this.recordButton.Size = new System.Drawing.Size(75, 51);
             this.recordButton.TabIndex = 44;
@@ -706,7 +700,7 @@
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel14.Controls.Add(this.inboundPercent);
             this.panel14.Controls.Add(this.label13);
-            this.panel14.Location = new System.Drawing.Point(42, 436);
+            this.panel14.Location = new System.Drawing.Point(42, 467);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(125, 56);
             this.panel14.TabIndex = 45;
@@ -736,7 +730,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.Control;
-            this.label15.Location = new System.Drawing.Point(17, 401);
+            this.label15.Location = new System.Drawing.Point(17, 436);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(174, 16);
             this.label15.TabIndex = 46;
@@ -748,33 +742,11 @@
             this.notesBox_behaviour.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.notesBox_behaviour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notesBox_behaviour.ForeColor = System.Drawing.Color.White;
-            this.notesBox_behaviour.Location = new System.Drawing.Point(293, 582);
+            this.notesBox_behaviour.Location = new System.Drawing.Point(293, 370);
             this.notesBox_behaviour.Multiline = true;
             this.notesBox_behaviour.Name = "notesBox_behaviour";
-            this.notesBox_behaviour.Size = new System.Drawing.Size(336, 87);
+            this.notesBox_behaviour.Size = new System.Drawing.Size(336, 142);
             this.notesBox_behaviour.TabIndex = 47;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Copperplate Gothic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label9.Location = new System.Drawing.Point(290, 431);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(181, 18);
-            this.label9.TabIndex = 48;
-            this.label9.Text = "Electrophysiology";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Copperplate Gothic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label14.Location = new System.Drawing.Point(290, 552);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(102, 18);
-            this.label14.TabIndex = 49;
-            this.label14.Text = "Behaviour";
             // 
             // startPreSleep
             // 
@@ -843,19 +815,136 @@
             this.stopPostSleep.Visible = false;
             this.stopPostSleep.Click += new System.EventHandler(this.stopPostSleep_Click);
             // 
+            // panel11
+            // 
+            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel11.Controls.Add(this.rat_timelabel);
+            this.panel11.Controls.Add(this.rat_datelabel);
+            this.panel11.Controls.Add(this.label16);
+            this.panel11.Controls.Add(this.label17);
+            this.panel11.Location = new System.Drawing.Point(702, 246);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(192, 83);
+            this.panel11.TabIndex = 20;
+            // 
+            // rat_timelabel
+            // 
+            this.rat_timelabel.AutoSize = true;
+            this.rat_timelabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rat_timelabel.ForeColor = System.Drawing.Color.Cyan;
+            this.rat_timelabel.Location = new System.Drawing.Point(76, 44);
+            this.rat_timelabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.rat_timelabel.Name = "rat_timelabel";
+            this.rat_timelabel.Size = new System.Drawing.Size(72, 19);
+            this.rat_timelabel.TabIndex = 24;
+            this.rat_timelabel.Text = "3:57 PM";
+            this.rat_timelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rat_timelabel.Click += new System.EventHandler(this.rat_timelabel_Click);
+            // 
+            // rat_datelabel
+            // 
+            this.rat_datelabel.AutoSize = true;
+            this.rat_datelabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rat_datelabel.ForeColor = System.Drawing.Color.Cyan;
+            this.rat_datelabel.Location = new System.Drawing.Point(59, 18);
+            this.rat_datelabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.rat_datelabel.Name = "rat_datelabel";
+            this.rat_datelabel.Size = new System.Drawing.Size(99, 19);
+            this.rat_datelabel.TabIndex = 23;
+            this.rat_datelabel.Text = "07/26/2019";
+            this.rat_datelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.SystemColors.Control;
+            this.label16.Location = new System.Drawing.Point(3, 19);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(48, 18);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "Date:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Cyan;
+            this.label17.Location = new System.Drawing.Point(47, 18);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(0, 18);
+            this.label17.TabIndex = 16;
+            // 
+            // ephys
+            // 
+            this.ephys.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ephys.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ephys.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.ephys.Location = new System.Drawing.Point(293, 568);
+            this.ephys.Name = "ephys";
+            this.ephys.Size = new System.Drawing.Size(336, 58);
+            this.ephys.TabIndex = 59;
+            this.ephys.Text = "Ephys Properties";
+            this.ephys.UseVisualStyleBackColor = false;
+            this.ephys.Click += new System.EventHandler(this.ephys_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(25, 53);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(64, 18);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "inbound:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(15, 27);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(74, 18);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "outbound:";
+            // 
+            // outbound_num_corr
+            // 
+            this.outbound_num_corr.AutoSize = true;
+            this.outbound_num_corr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outbound_num_corr.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.outbound_num_corr.Location = new System.Drawing.Point(93, 27);
+            this.outbound_num_corr.Name = "outbound_num_corr";
+            this.outbound_num_corr.Size = new System.Drawing.Size(16, 18);
+            this.outbound_num_corr.TabIndex = 21;
+            this.outbound_num_corr.Text = "0";
+            // 
+            // inbound_num_corr
+            // 
+            this.inbound_num_corr.AutoSize = true;
+            this.inbound_num_corr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inbound_num_corr.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.inbound_num_corr.Location = new System.Drawing.Point(93, 53);
+            this.inbound_num_corr.Name = "inbound_num_corr";
+            this.inbound_num_corr.Size = new System.Drawing.Size(16, 18);
+            this.inbound_num_corr.TabIndex = 22;
+            this.inbound_num_corr.Text = "0";
+            // 
             // W_Maze_Gui
             // 
             this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.ClientSize = new System.Drawing.Size(927, 715);
+            this.ClientSize = new System.Drawing.Size(927, 649);
+            this.Controls.Add(this.ephys);
+            this.Controls.Add(this.panel11);
             this.Controls.Add(this.stopPostSleep);
             this.Controls.Add(this.startPostSleep);
             this.Controls.Add(this.stopPreSleep);
             this.Controls.Add(this.startPreSleep);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.notesBox_behaviour);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.panel14);
@@ -873,7 +962,6 @@
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.selectButton);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.notesBox);
             this.Controls.Add(this.experimenterBox);
             this.Controls.Add(this.experimenterLabel);
             this.Controls.Add(this.panel7);
@@ -923,6 +1011,8 @@
             this.panel13.PerformLayout();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -950,14 +1040,12 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label initialNum;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label totalNum;
         private System.Windows.Forms.Label experimenterLabel;
         private System.Windows.Forms.TextBox experimenterBox;
-        private System.Windows.Forms.TextBox notesBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button selectButton;
         private System.Windows.Forms.Label ratSelectionLabel;
@@ -988,12 +1076,20 @@
         private System.Windows.Forms.Label inboundPercent;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox notesBox_behaviour;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button startPreSleep;
         private System.Windows.Forms.Button stopPreSleep;
         private System.Windows.Forms.Button startPostSleep;
         private System.Windows.Forms.Button stopPostSleep;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label rat_timelabel;
+        private System.Windows.Forms.Label rat_datelabel;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button ephys;
+        private System.Windows.Forms.Label inbound_num_corr;
+        private System.Windows.Forms.Label outbound_num_corr;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label14;
     }
 }
 

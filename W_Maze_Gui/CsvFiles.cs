@@ -10,9 +10,9 @@ namespace W_Maze_Gui
         public static StreamWriter RatdataWriter;
         public static StreamWriter initial;
         public static StreamWriter trainingCsv;
-        private const string RatDataPath = @"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\RatData.Csv";
-        private const string RatDirectoryPath = @"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\";
-        private const string trainingPath = @"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\Training\";
+        private const string RatDataPath = @"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\RatData.Csv";
+        private const string RatDirectoryPath = @"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\";
+        private const string trainingPath = @"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\Training\";
         public static void OpenRatDataCsv()
         {
             //ratdataReader = new StreamReader("RatData.csv",true);
@@ -64,12 +64,12 @@ namespace W_Maze_Gui
 
         public static void OpenTimestampCsv(string number, string session)
         {
-            if (!Directory.Exists($@"C:\Users\akoutia\Documents\Barnes Lab\Wmaze\RatData\{number}\TimeStamps"))
+            if (!Directory.Exists($@"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\{number}\TimeStamps"))
                 Directory.CreateDirectory(
-                    $"C:\\Users\\akoutia\\Documents\\Barnes Lab\\Wmaze\\RatData\\{number}\\TimeStamps");
+                    $"C:\\Users\\sahanasrivathsa\\Documents\\Barnes Lab\\Wmaze\\RatData\\{number}\\TimeStamps");
             TimestampCsv =
                 new StreamWriter(
-                    $"C:\\Users\\akoutia\\Documents\\Barnes Lab\\Wmaze\\RatData\\{number}\\TimeStamps\\TimeStamps_{number}_Session{session}.csv");
+                    $"C:\\Users\\sahanasrivathsa\\Documents\\Barnes Lab\\Wmaze\\RatData\\{number}\\TimeStamps\\TimeStamps_{number}_Session{session}.csv");
         }
 
         public static void Close()

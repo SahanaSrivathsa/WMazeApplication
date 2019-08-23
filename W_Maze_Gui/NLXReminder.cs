@@ -20,12 +20,14 @@ namespace W_Maze_Gui
         public static MNetCom.MNetComClient mNetComClient;
         private W_Maze_Gui _gui;
         #endregion
-        
+       
 
         public NLXReminder(W_Maze_Gui gui)
         {
             _gui = gui;
             mNetComClient = W_Maze_Gui.mNetComClient;
+            
+            
             InitializeComponent();
         }
 
@@ -58,6 +60,7 @@ namespace W_Maze_Gui
         private void notRecording(object sender, EventArgs e)
         {
             Close();
+            W_Maze_Gui.recordingStatus = false;
             _gui.disable_NLX();
                 
         }

@@ -63,29 +63,30 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(328, 546);
+            this.label2.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(327, 536);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(194, 15);
+            this.label2.Size = new System.Drawing.Size(195, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Laboratory of Carol A. Barnes";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(352, 573);
+            this.label3.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(309, 563);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(133, 15);
+            this.label3.Size = new System.Drawing.Size(234, 14);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Adele Kapellusch 2016";
+            this.label3.Text = "Adele Kapellusch 2016 , Sahana Srivathsa 2018";
             // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(294, 501);
+            this.progressBar1.MarqueeAnimationSpeed = 150;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(271, 23);
-            this.progressBar1.TabIndex = 5;
+            this.progressBar1.TabIndex = 6;
             // 
             // timer1
             // 
