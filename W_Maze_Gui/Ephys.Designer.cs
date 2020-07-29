@@ -141,6 +141,7 @@
             this.lfp_sec_3 = new System.Windows.Forms.CheckedListBox();
             this.lfp_sec_2 = new System.Windows.Forms.CheckedListBox();
             this.lfp_sec_1 = new System.Windows.Forms.CheckedListBox();
+            this.Screenshot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // box
@@ -619,9 +620,9 @@
             this.enter.BackColor = System.Drawing.Color.Snow;
             this.enter.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.enter.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.enter.Location = new System.Drawing.Point(610, 818);
+            this.enter.Location = new System.Drawing.Point(801, 818);
             this.enter.Name = "enter";
-            this.enter.Size = new System.Drawing.Size(183, 46);
+            this.enter.Size = new System.Drawing.Size(88, 46);
             this.enter.TabIndex = 46;
             this.enter.Text = "ENTER";
             this.enter.UseVisualStyleBackColor = false;
@@ -920,9 +921,9 @@
             this.ephys_save.BackColor = System.Drawing.Color.Snow;
             this.ephys_save.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ephys_save.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.ephys_save.Location = new System.Drawing.Point(826, 818);
+            this.ephys_save.Location = new System.Drawing.Point(925, 818);
             this.ephys_save.Name = "ephys_save";
-            this.ephys_save.Size = new System.Drawing.Size(183, 46);
+            this.ephys_save.Size = new System.Drawing.Size(84, 46);
             this.ephys_save.TabIndex = 86;
             this.ephys_save.Text = "SAVE";
             this.ephys_save.UseVisualStyleBackColor = false;
@@ -1375,18 +1376,18 @@
             // 
             // final
             // 
-            this.final.Location = new System.Drawing.Point(974, 12);
+            this.final.Location = new System.Drawing.Point(1024, 9);
             this.final.Name = "final";
-            this.final.Size = new System.Drawing.Size(35, 48);
+            this.final.Size = new System.Drawing.Size(10, 10);
             this.final.TabIndex = 118;
             this.final.Text = "";
             this.final.Visible = false;
             // 
             // rtb1
             // 
-            this.rtb1.Location = new System.Drawing.Point(627, 27);
+            this.rtb1.Location = new System.Drawing.Point(1024, 12);
             this.rtb1.Name = "rtb1";
-            this.rtb1.Size = new System.Drawing.Size(35, 48);
+            this.rtb1.Size = new System.Drawing.Size(10, 10);
             this.rtb1.TabIndex = 119;
             this.rtb1.Text = "TEst";
             this.rtb1.Visible = false;
@@ -1688,6 +1689,19 @@
             this.lfp_sec_1.TabIndex = 129;
             this.lfp_sec_1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox9_SelectedIndexChanged);
             // 
+            // Screenshot
+            // 
+            this.Screenshot.BackColor = System.Drawing.Color.Snow;
+            this.Screenshot.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Screenshot.ForeColor = System.Drawing.Color.MediumSlateBlue;
+            this.Screenshot.Location = new System.Drawing.Point(610, 818);
+            this.Screenshot.Name = "Screenshot";
+            this.Screenshot.Size = new System.Drawing.Size(156, 46);
+            this.Screenshot.TabIndex = 138;
+            this.Screenshot.Text = "SCREENSHOT";
+            this.Screenshot.UseVisualStyleBackColor = false;
+            this.Screenshot.Click += new System.EventHandler(this.Screenshot_Click);
+            // 
             // Ephys
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1695,6 +1709,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1034, 887);
+            this.Controls.Add(this.Screenshot);
             this.Controls.Add(this.lfp_sec_rr);
             this.Controls.Add(this.lfp_sec_8);
             this.Controls.Add(this.lfp_sec_7);
@@ -1813,7 +1828,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Ephys";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Electrophysiology Recordings";
+            this.Text = "SCREENSHOT";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1934,5 +1949,6 @@
         private System.Windows.Forms.CheckedListBox lfp_sec_3;
         private System.Windows.Forms.CheckedListBox lfp_sec_2;
         private System.Windows.Forms.CheckedListBox lfp_sec_1;
+        private System.Windows.Forms.Button Screenshot;
     }
 }

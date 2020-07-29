@@ -49,6 +49,10 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.inbound_num_corr = new System.Windows.Forms.Label();
+            this.outbound_num_corr = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.repeatNum = new System.Windows.Forms.Label();
             this.inboundNum = new System.Windows.Forms.Label();
@@ -95,10 +99,10 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.ephys = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.outbound_num_corr = new System.Windows.Forms.Label();
-            this.inbound_num_corr = new System.Windows.Forms.Label();
+            this.pause = new System.Windows.Forms.Button();
+            this.resume = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -158,7 +162,6 @@
             this.RatSelection.Location = new System.Drawing.Point(751, 54);
             this.RatSelection.Name = "RatSelection";
             this.RatSelection.Size = new System.Drawing.Size(101, 21);
-            this.RatSelection.Sorted = true;
             this.RatSelection.TabIndex = 3;
             this.RatSelection.SelectedIndexChanged += new System.EventHandler(this.ratSelectionBox_SelectedIndexChanged);
             this.RatSelection.Click += new System.EventHandler(this.ratSelectionBox_SelectedIndexChanged);
@@ -351,6 +354,50 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(119, 81);
             this.panel4.TabIndex = 23;
+            // 
+            // inbound_num_corr
+            // 
+            this.inbound_num_corr.AutoSize = true;
+            this.inbound_num_corr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inbound_num_corr.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.inbound_num_corr.Location = new System.Drawing.Point(93, 53);
+            this.inbound_num_corr.Name = "inbound_num_corr";
+            this.inbound_num_corr.Size = new System.Drawing.Size(16, 18);
+            this.inbound_num_corr.TabIndex = 22;
+            this.inbound_num_corr.Text = "0";
+            // 
+            // outbound_num_corr
+            // 
+            this.outbound_num_corr.AutoSize = true;
+            this.outbound_num_corr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outbound_num_corr.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.outbound_num_corr.Location = new System.Drawing.Point(93, 27);
+            this.outbound_num_corr.Name = "outbound_num_corr";
+            this.outbound_num_corr.Size = new System.Drawing.Size(16, 18);
+            this.outbound_num_corr.TabIndex = 21;
+            this.outbound_num_corr.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(25, 53);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(64, 18);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "inbound:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(15, 27);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(74, 18);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "outbound:";
             // 
             // panel6
             // 
@@ -787,7 +834,7 @@
             this.startPostSleep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.startPostSleep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startPostSleep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(0)))));
-            this.startPostSleep.Location = new System.Drawing.Point(293, 29);
+            this.startPostSleep.Location = new System.Drawing.Point(293, 22);
             this.startPostSleep.Name = "startPostSleep";
             this.startPostSleep.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.startPostSleep.Size = new System.Drawing.Size(115, 26);
@@ -805,7 +852,7 @@
             this.stopPostSleep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.stopPostSleep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stopPostSleep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(40)))), ((int)(((byte)(0)))));
-            this.stopPostSleep.Location = new System.Drawing.Point(520, 28);
+            this.stopPostSleep.Location = new System.Drawing.Point(520, 22);
             this.stopPostSleep.Name = "stopPostSleep";
             this.stopPostSleep.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.stopPostSleep.Size = new System.Drawing.Size(116, 26);
@@ -877,60 +924,72 @@
             // 
             // ephys
             // 
-            this.ephys.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ephys.BackColor = System.Drawing.Color.RoyalBlue;
             this.ephys.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ephys.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ephys.Location = new System.Drawing.Point(293, 568);
+            this.ephys.ForeColor = System.Drawing.Color.Black;
+            this.ephys.Location = new System.Drawing.Point(300, 527);
             this.ephys.Name = "ephys";
-            this.ephys.Size = new System.Drawing.Size(336, 58);
+            this.ephys.Size = new System.Drawing.Size(336, 46);
             this.ephys.TabIndex = 59;
             this.ephys.Text = "Ephys Properties";
             this.ephys.UseVisualStyleBackColor = false;
             this.ephys.Click += new System.EventHandler(this.ephys_Click);
             // 
-            // label9
+            // pause
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(25, 53);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 18);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "inbound:";
+            this.pause.BackColor = System.Drawing.Color.RoyalBlue;
+            this.pause.FlatAppearance.BorderSize = 0;
+            this.pause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pause.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pause.ForeColor = System.Drawing.Color.Black;
+            this.pause.Location = new System.Drawing.Point(300, 593);
+            this.pause.Name = "pause";
+            this.pause.Size = new System.Drawing.Size(92, 38);
+            this.pause.TabIndex = 60;
+            this.pause.Text = "PAUSE";
+            this.pause.UseVisualStyleBackColor = false;
             // 
-            // label14
+            // resume
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(15, 27);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(74, 18);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "outbound:";
+            this.resume.BackColor = System.Drawing.Color.RoyalBlue;
+            this.resume.FlatAppearance.BorderSize = 0;
+            this.resume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resume.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resume.ForeColor = System.Drawing.Color.Black;
+            this.resume.Location = new System.Drawing.Point(300, 593);
+            this.resume.Name = "resume";
+            this.resume.Size = new System.Drawing.Size(92, 38);
+            this.resume.TabIndex = 61;
+            this.resume.Text = "RESUME";
+            this.resume.UseVisualStyleBackColor = false;
             // 
-            // outbound_num_corr
+            // button1
             // 
-            this.outbound_num_corr.AutoSize = true;
-            this.outbound_num_corr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outbound_num_corr.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.outbound_num_corr.Location = new System.Drawing.Point(93, 27);
-            this.outbound_num_corr.Name = "outbound_num_corr";
-            this.outbound_num_corr.Size = new System.Drawing.Size(16, 18);
-            this.outbound_num_corr.TabIndex = 21;
-            this.outbound_num_corr.Text = "0";
+            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(422, 593);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 38);
+            this.button1.TabIndex = 62;
+            this.button1.Text = "PAUSE";
+            this.button1.UseVisualStyleBackColor = false;
             // 
-            // inbound_num_corr
+            // button2
             // 
-            this.inbound_num_corr.AutoSize = true;
-            this.inbound_num_corr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inbound_num_corr.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.inbound_num_corr.Location = new System.Drawing.Point(93, 53);
-            this.inbound_num_corr.Name = "inbound_num_corr";
-            this.inbound_num_corr.Size = new System.Drawing.Size(16, 18);
-            this.inbound_num_corr.TabIndex = 22;
-            this.inbound_num_corr.Text = "0";
+            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(544, 593);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(92, 38);
+            this.button2.TabIndex = 63;
+            this.button2.Text = "PAUSE";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // W_Maze_Gui
             // 
@@ -939,6 +998,9 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.ClientSize = new System.Drawing.Size(927, 649);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.pause);
             this.Controls.Add(this.ephys);
             this.Controls.Add(this.panel11);
             this.Controls.Add(this.stopPostSleep);
@@ -977,6 +1039,7 @@
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ratSelectionLabel);
+            this.Controls.Add(this.resume);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1090,6 +1153,10 @@
         private System.Windows.Forms.Label outbound_num_corr;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button pause;
+        private System.Windows.Forms.Button resume;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
