@@ -10,11 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.IO;
+using System.Drawing.Imaging;
 
 namespace W_Maze_Gui
 {
     public partial class Ephys : Form
     {
+        public static string currrentRat = W_Maze_Gui.chosenRat;
+        public static string folderPath = $@"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\{currrentRat}\Rat_EphysData\Session{W_Maze_Gui.sessionNumber}\";
         public dynamic currrentRat = W_Maze_Gui.chosenRat;
         public static bool presleepStart = false;
         public static bool runStart = false;
@@ -28,6 +31,8 @@ namespace W_Maze_Gui
             if (presleepStart == true) { box.AppendText("PRE-SLEEP \r\n"); }
             if (runStart == true) { box.AppendText("WMAZE RUN \r\n"); }
             if (postsleepStart == true) { box.AppendText("POST-SLEEP \r\n"); }
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
 
 
         }
@@ -133,14 +138,19 @@ namespace W_Maze_Gui
 
             // Initialize the SaveFileDialog to specify the RTF extention for the file.
             saveFile1.DefaultExt = ".rtf";
-            saveFile1.FileName = $"{DateTimeStr}_ WM_Session  ";
+            saveFile1.FileName = $"{DateTimeStr}_ WM_Session{W_Maze_Gui.sessionNumber}";
             saveFile1.Filter = "RTF Files|*.rtf";
 
             //Directory
-            string folderPath = $@"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\{currrentRat}\Rat_EphysData\";
-            if (!Directory.Exists(folderPath))
-                Directory.CreateDirectory(folderPath);
+            
+            
             saveFile1.InitialDirectory = folderPath;
+            var bmpScreenCapture = new Bitmap(Width, Height);
+            DrawToBitmap(bmpScreenCapture, new Rectangle(0, 0, bmpScreenCapture.Width, bmpScreenCapture.Height));
+            bmpScreenCapture.Save(
+                $@"{folderPath}EphysProperties.gif",ImageFormat.Gif);
+            
+            
 
 
             // Determine whether the user selected a file name from the saveFileDialog.
@@ -159,6 +169,13 @@ namespace W_Maze_Gui
         }
 
 
+        }
+
+        private void Screenshot_Click(object sender, EventArgs e)
+        {
+            var screenshot_window = new Screenshot();
+            screenshot_window.Show();
+        }
     }
 }
 

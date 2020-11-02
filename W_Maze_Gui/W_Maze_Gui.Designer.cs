@@ -159,7 +159,6 @@
             this.RatSelection.Location = new System.Drawing.Point(751, 54);
             this.RatSelection.Name = "RatSelection";
             this.RatSelection.Size = new System.Drawing.Size(101, 21);
-            this.RatSelection.Sorted = true;
             this.RatSelection.TabIndex = 3;
             this.RatSelection.SelectedIndexChanged += new System.EventHandler(this.ratSelectionBox_SelectedIndexChanged);
             this.RatSelection.Click += new System.EventHandler(this.ratSelectionBox_SelectedIndexChanged);
@@ -994,6 +993,7 @@
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ratSelectionLabel);
+            this.Controls.Add(this.resume);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

@@ -33,9 +33,9 @@ namespace W_Maze_Gui
         private readonly Form exitConfirm = new ExitConfirm();
         private readonly Form reminderWindow;
         //private readonly Form modeWindow;
-        private Dictionary<string, string> name_to_age = new Dictionary<string, string>();
-        private Dictionary<string, int> name_to_session = new Dictionary<string, int>();
-        private List<string> ratName = new List<string>();
+        private readonly Dictionary<string, string> name_to_age = new Dictionary<string, string>();
+        private readonly Dictionary<string, int> name_to_session = new Dictionary<string, int>();
+        private readonly List<string> ratName = new List<string>();
         private int _elapsed_time;
         private string run_time;
         private bool _exiting;
@@ -58,7 +58,7 @@ namespace W_Maze_Gui
         public double repeatCnt;
         public bool saved;
         private bool SessionHasBegun;
-        public string sessionNumber;
+        public static string sessionNumber;
         public bool splash = true;
         public double totes;
         public string year;
@@ -82,6 +82,7 @@ namespace W_Maze_Gui
         public static string newRatNo;
         public static string newRatAge;
         public static bool cheetahConnected = false;
+        public string dateString;
 
 
 
@@ -128,6 +129,7 @@ namespace W_Maze_Gui
             this.RatSelection.Items.Add("New Rat");  //option to create new rat
 
             //Displays time and date on GUI window    
+            dateString = DateTime.Now.ToShortDateString();
             rat_datelabel.Text = DateTime.Now.ToShortDateString();
             rat_timelabel.Text = DateTime.Now.ToShortTimeString();
 
@@ -201,7 +203,7 @@ namespace W_Maze_Gui
                     var rat_entry = new NewRat();
                     rat_entry.ShowDialog();
                     ratName.Add(newRatNo);
-                    Console.WriteLine($"The NEW RAT NO IS {newRatNo}");
+                    //Console.WriteLine($"The NEW RAT NO IS {newRatNo}");
                     name_to_age.Add(newRatNo,newRatAge);
                     name_to_session.Add(newRatNo, 0);
 
@@ -218,6 +220,7 @@ namespace W_Maze_Gui
                 ageLabel.Text = name_to_age[chosenRat];
                 
                     sessionLabel.Text = name_to_session[chosenRat].ToString();
+                   
                     CsvFiles.OpenSessionCsv(chosenRat);
                     CsvFiles.OpenWriteToRatData();
                     foreach (var ratname in name_to_age.Keys)
@@ -234,6 +237,44 @@ namespace W_Maze_Gui
                 
                 
                 ratWasChosen = true;
+                if (recordingStatus == true)
+                {
+                    string reply = "";
+
+                    if (!(mNetComClient.SendCommand($"-ProcessConfigurationFile WMAZE_HALO_Ephys_Setup_{chosenRat}.cfg", ref reply)))
+                    {
+                        MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                    else
+                    {
+                        String[] parsedReplyString = reply.Split(' ');
+                        if (0 < parsedReplyString.GetLength(0))
+                        {
+                            if (parsedReplyString[0].Equals("-1"))
+                            {
+                                MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            }
+                        }
+
+                    }
+                    if (!(mNetComClient.SendCommand($"-SetDataDirectory \"I:\\CurrentCheetahData\\10732\\WMaze_10732\\{dateString}-Session{sessionNumber}\"", ref reply)))
+                    {
+                        MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                    else
+                    {
+                        String[] parsedReplyString = reply.Split(' ');
+                        if (0 < parsedReplyString.GetLength(0))
+                        {
+                            if (parsedReplyString[0].Equals("-1"))
+                            {
+                                MessageBox.Show(this, "Cheetah could not process your command.", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            }
+                        }
+
+                    }
+                }
+                
                 ratbeingtested = ratName[RatSelection.SelectedIndex];
                 
 
@@ -588,7 +629,7 @@ namespace W_Maze_Gui
         public void run_worker_completed(object sender, RunWorkerCompletedEventArgs e)
         //The updater that updates the GUI with the new info and writes to the Timestamp CSV
         {
-            
+            string reply = "";
             if (!e.Cancelled && (e.Error == null) && (e.Result != null) && SessionHasBegun)
             {
                 var messageType = e.Result.ToString().Substring(0, 1);
@@ -656,7 +697,14 @@ namespace W_Maze_Gui
                                 {
                                     case "c":
                                         CsvFiles.TimestampCsv.Write($"1,Correct,{DateTime.Now - startdTime}\n");
-                                        corOut++;
+
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"1, CorrectOubound, {corOut}\" 0 0", ref reply);
+                                        }
+
+
+                                                corOut++;
                                         //corOutNum.Text = corOut.ToString();
                                         outbound_num_corr.Text = $"{corOut.ToString()}";
                                         percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
@@ -667,17 +715,33 @@ namespace W_Maze_Gui
                                         break;
                                     case "i":
                                         CsvFiles.TimestampCsv.Write($"1,Inbound Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"1, Inbound Error\" 0 0", ref reply);
+                                        }
                                         last = 1;
                                         break;
                                     case "o":
                                         CsvFiles.TimestampCsv.Write($"1,Outbound Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"1, Outbound Error\" 0 0", ref reply);
+                                        }
                                         last = 1;
                                         break;
                                     case "r":
                                         CsvFiles.TimestampCsv.Write($"1,Repeat Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"1, Repeat Error\" 0 0", ref reply);
+                                        }
                                         break;
                                     case "b":
                                         CsvFiles.TimestampCsv.Write($"1,Initial Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"1, Initial Error\" 0 0", ref reply);
+                                        }
                                         last = 1;
                                         break;
                                 }
@@ -688,6 +752,10 @@ namespace W_Maze_Gui
                                 {
                                     case "c":
                                         CsvFiles.TimestampCsv.Write($"2,Correct,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"1, CorrectInbound, {corInb}\" 0 0", ref reply);
+                                        }
                                         corInb++;
                                         if (last == 0)
                                         {
@@ -713,15 +781,31 @@ namespace W_Maze_Gui
                                         break;
                                     case "i":
                                         CsvFiles.TimestampCsv.Write($"2,Inbound Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"2,Inbound Error\" 0 0", ref reply);
+                                        }
                                         break;
                                     case "o":
                                         CsvFiles.TimestampCsv.Write($"2,Outbound Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"2,Outbound Error\" 0 0", ref reply);
+                                        }
                                         break;
                                     case "r":
                                         CsvFiles.TimestampCsv.Write($"2,Repeat Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"2,Repeat Error\" 0 0", ref reply);
+                                        }
                                         break;
                                     case "b":
                                         CsvFiles.TimestampCsv.Write($"2,Initial Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"2,Initial Error\" 0 0", ref reply);
+                                        }
                                         break;
                                 }
 
@@ -731,8 +815,13 @@ namespace W_Maze_Gui
                                 {
                                     case "c":
                                         CsvFiles.TimestampCsv.Write($"3,Correct,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"3, CorrectOutbound, {corOut}\" 0 0", ref reply);
+                                        }
                                         corOut++;
                                         //corOutNum.Text = corOut.ToString();
+                                        outbound_num_corr.Text = $"{corOut.ToString()}";
                                         percentCor = Math.Round((((corOut) / (outboundCnt + corOut)) * 100), 0,
                                             MidpointRounding.AwayFromZero);
                                         percentCorrect.Text = $"{percentCor.ToString()}%";
@@ -741,17 +830,33 @@ namespace W_Maze_Gui
                                         break;
                                     case "i":
                                         CsvFiles.TimestampCsv.Write($"3,Inbound Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"3,Inbound Error\" 0 0", ref reply);
+                                        }
                                         last = 3;
                                         break;
                                     case "o":
                                         CsvFiles.TimestampCsv.Write($"3,Outbound Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"3,Outbound Error\" 0 0", ref reply);
+                                        }
                                         last = 3;
                                         break;
                                     case "r":
                                         CsvFiles.TimestampCsv.Write($"3,Repeat Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"3,Repeat Error\" 0 0", ref reply);
+                                        }
                                         break;
                                     case "b":
                                         CsvFiles.TimestampCsv.Write($"3,Initial Error,{DateTime.Now - startdTime}\n");
+                                        if (recordingStatus == true)
+                                        {
+                                            mNetComClient.SendCommand($"-PostEvent \"3,Initial Error\" 0 0", ref reply);
+                                        }
                                         last = 3;
                                         break;
                                 }

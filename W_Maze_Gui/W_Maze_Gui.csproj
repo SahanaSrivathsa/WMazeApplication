@@ -221,6 +221,12 @@
     <Compile Include="NLXReminder.Designer.cs">
       <DependentUpon>NLXReminder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screenshot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screenshot.Designer.cs">
+      <DependentUpon>Screenshot.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectRatWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NLXReminder.resx">
       <DependentUpon>NLXReminder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screenshot.resx">
+      <DependentUpon>Screenshot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectRatWindow.resx">
       <DependentUpon>SelectRatWindow.cs</DependentUpon>
