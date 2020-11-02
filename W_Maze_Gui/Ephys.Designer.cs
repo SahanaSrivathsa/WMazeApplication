@@ -50,7 +50,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -73,24 +72,6 @@
             this.num10 = new System.Windows.Forms.TextBox();
             this.num9 = new System.Windows.Forms.TextBox();
             this.enter = new System.Windows.Forms.Button();
-            this.lfp1 = new System.Windows.Forms.CheckedListBox();
-            this.lfp2 = new System.Windows.Forms.CheckedListBox();
-            this.lfp3 = new System.Windows.Forms.CheckedListBox();
-            this.lfp4 = new System.Windows.Forms.CheckedListBox();
-            this.lfp5 = new System.Windows.Forms.CheckedListBox();
-            this.lfp6 = new System.Windows.Forms.CheckedListBox();
-            this.lfp7 = new System.Windows.Forms.CheckedListBox();
-            this.lfp8 = new System.Windows.Forms.CheckedListBox();
-            this.lfprr = new System.Windows.Forms.CheckedListBox();
-            this.lfp9 = new System.Windows.Forms.CheckedListBox();
-            this.lfp10 = new System.Windows.Forms.CheckedListBox();
-            this.lfp11 = new System.Windows.Forms.CheckedListBox();
-            this.lfp12 = new System.Windows.Forms.CheckedListBox();
-            this.lfp13 = new System.Windows.Forms.CheckedListBox();
-            this.lfp14 = new System.Windows.Forms.CheckedListBox();
-            this.lfp15 = new System.Windows.Forms.CheckedListBox();
-            this.lfp16 = new System.Windows.Forms.CheckedListBox();
-            this.lfprf = new System.Windows.Forms.CheckedListBox();
             this.ephys_save = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.ACC_ref = new System.Windows.Forms.TextBox();
@@ -120,27 +101,25 @@
             this.HC_refAD = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.screenshots = new System.Windows.Forms.RichTextBox();
-            this.final = new System.Windows.Forms.RichTextBox();
-            this.rtb1 = new System.Windows.Forms.RichTextBox();
-            this.lfp_sec_9 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_10 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_rf = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_14 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_13 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_12 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_11 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_15 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_16 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_rr = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_8 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_7 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_6 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_5 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_4 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_3 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_2 = new System.Windows.Forms.CheckedListBox();
-            this.lfp_sec_1 = new System.Windows.Forms.CheckedListBox();
+            this.cellProp1 = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cellProp7 = new System.Windows.Forms.TextBox();
+            this.cellProp5 = new System.Windows.Forms.TextBox();
+            this.cellProp4 = new System.Windows.Forms.TextBox();
+            this.cellPropRR = new System.Windows.Forms.TextBox();
+            this.cellProp3 = new System.Windows.Forms.TextBox();
+            this.cellProp2 = new System.Windows.Forms.TextBox();
+            this.cellProp6 = new System.Windows.Forms.TextBox();
+            this.cellProp8 = new System.Windows.Forms.TextBox();
+            this.cellProp16 = new System.Windows.Forms.TextBox();
+            this.cellProp14 = new System.Windows.Forms.TextBox();
+            this.cellProp10 = new System.Windows.Forms.TextBox();
+            this.cellProp11 = new System.Windows.Forms.TextBox();
+            this.cellPropRF = new System.Windows.Forms.TextBox();
+            this.cellProp12 = new System.Windows.Forms.TextBox();
+            this.cellProp13 = new System.Windows.Forms.TextBox();
+            this.cellProp15 = new System.Windows.Forms.TextBox();
+            this.cellProp9 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // box
@@ -154,7 +133,7 @@
             this.box.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.box.Location = new System.Drawing.Point(610, 88);
             this.box.Name = "box";
-            this.box.Size = new System.Drawing.Size(399, 456);
+            this.box.Size = new System.Drawing.Size(399, 676);
             this.box.TabIndex = 0;
             this.box.Text = "";
             this.box.TextChanged += new System.EventHandler(this.box_TextChanged);
@@ -390,17 +369,6 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "Tetrode Units";
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Corbel", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label22.Location = new System.Drawing.Point(453, 27);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(60, 33);
-            this.label22.TabIndex = 23;
-            this.label22.Text = "LFP";
-            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -626,294 +594,6 @@
             this.enter.Text = "ENTER";
             this.enter.UseVisualStyleBackColor = false;
             this.enter.Click += new System.EventHandler(this.enter_Click);
-            // 
-            // lfp1
-            // 
-            this.lfp1.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp1.CheckOnClick = true;
-            this.lfp1.ColumnWidth = 90;
-            this.lfp1.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp1.FormattingEnabled = true;
-            this.lfp1.Items.AddRange(new object[] {
-            "Oscillations"});
-            this.lfp1.Location = new System.Drawing.Point(384, 126);
-            this.lfp1.MultiColumn = true;
-            this.lfp1.Name = "lfp1";
-            this.lfp1.Size = new System.Drawing.Size(93, 21);
-            this.lfp1.TabIndex = 68;
-            // 
-            // lfp2
-            // 
-            this.lfp2.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp2.CheckOnClick = true;
-            this.lfp2.ColumnWidth = 90;
-            this.lfp2.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp2.FormattingEnabled = true;
-            this.lfp2.Items.AddRange(new object[] {
-            "Oscillations"});
-            this.lfp2.Location = new System.Drawing.Point(384, 169);
-            this.lfp2.MultiColumn = true;
-            this.lfp2.Name = "lfp2";
-            this.lfp2.Size = new System.Drawing.Size(93, 21);
-            this.lfp2.TabIndex = 69;
-            // 
-            // lfp3
-            // 
-            this.lfp3.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp3.CheckOnClick = true;
-            this.lfp3.ColumnWidth = 90;
-            this.lfp3.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp3.FormattingEnabled = true;
-            this.lfp3.Items.AddRange(new object[] {
-            "Oscillations"});
-            this.lfp3.Location = new System.Drawing.Point(384, 209);
-            this.lfp3.MultiColumn = true;
-            this.lfp3.Name = "lfp3";
-            this.lfp3.Size = new System.Drawing.Size(93, 21);
-            this.lfp3.TabIndex = 70;
-            // 
-            // lfp4
-            // 
-            this.lfp4.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp4.CheckOnClick = true;
-            this.lfp4.ColumnWidth = 90;
-            this.lfp4.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp4.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp4.FormattingEnabled = true;
-            this.lfp4.Items.AddRange(new object[] {
-            "Oscillations"});
-            this.lfp4.Location = new System.Drawing.Point(384, 249);
-            this.lfp4.MultiColumn = true;
-            this.lfp4.Name = "lfp4";
-            this.lfp4.Size = new System.Drawing.Size(93, 21);
-            this.lfp4.TabIndex = 71;
-            // 
-            // lfp5
-            // 
-            this.lfp5.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp5.CheckOnClick = true;
-            this.lfp5.ColumnWidth = 90;
-            this.lfp5.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp5.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp5.FormattingEnabled = true;
-            this.lfp5.Items.AddRange(new object[] {
-            "Oscillations"});
-            this.lfp5.Location = new System.Drawing.Point(384, 289);
-            this.lfp5.MultiColumn = true;
-            this.lfp5.Name = "lfp5";
-            this.lfp5.Size = new System.Drawing.Size(93, 21);
-            this.lfp5.TabIndex = 72;
-            // 
-            // lfp6
-            // 
-            this.lfp6.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp6.CheckOnClick = true;
-            this.lfp6.ColumnWidth = 90;
-            this.lfp6.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp6.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp6.FormattingEnabled = true;
-            this.lfp6.Items.AddRange(new object[] {
-            "Oscillations"});
-            this.lfp6.Location = new System.Drawing.Point(384, 327);
-            this.lfp6.MultiColumn = true;
-            this.lfp6.Name = "lfp6";
-            this.lfp6.Size = new System.Drawing.Size(93, 21);
-            this.lfp6.TabIndex = 73;
-            // 
-            // lfp7
-            // 
-            this.lfp7.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp7.CheckOnClick = true;
-            this.lfp7.ColumnWidth = 90;
-            this.lfp7.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp7.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp7.FormattingEnabled = true;
-            this.lfp7.Items.AddRange(new object[] {
-            "Oscillations"});
-            this.lfp7.Location = new System.Drawing.Point(384, 369);
-            this.lfp7.MultiColumn = true;
-            this.lfp7.Name = "lfp7";
-            this.lfp7.Size = new System.Drawing.Size(93, 21);
-            this.lfp7.TabIndex = 74;
-            // 
-            // lfp8
-            // 
-            this.lfp8.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp8.CheckOnClick = true;
-            this.lfp8.ColumnWidth = 90;
-            this.lfp8.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp8.FormattingEnabled = true;
-            this.lfp8.Items.AddRange(new object[] {
-            "Oscillations"});
-            this.lfp8.Location = new System.Drawing.Point(384, 407);
-            this.lfp8.MultiColumn = true;
-            this.lfp8.Name = "lfp8";
-            this.lfp8.Size = new System.Drawing.Size(93, 21);
-            this.lfp8.TabIndex = 75;
-            // 
-            // lfprr
-            // 
-            this.lfprr.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfprr.CheckOnClick = true;
-            this.lfprr.ColumnWidth = 90;
-            this.lfprr.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfprr.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfprr.FormattingEnabled = true;
-            this.lfprr.Items.AddRange(new object[] {
-            "Oscillations"});
-            this.lfprr.Location = new System.Drawing.Point(384, 447);
-            this.lfprr.MultiColumn = true;
-            this.lfprr.Name = "lfprr";
-            this.lfprr.Size = new System.Drawing.Size(93, 21);
-            this.lfprr.TabIndex = 76;
-            // 
-            // lfp9
-            // 
-            this.lfp9.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp9.CheckOnClick = true;
-            this.lfp9.ColumnWidth = 90;
-            this.lfp9.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp9.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp9.FormattingEnabled = true;
-            this.lfp9.Items.AddRange(new object[] {
-            "Theta"});
-            this.lfp9.Location = new System.Drawing.Point(384, 523);
-            this.lfp9.MultiColumn = true;
-            this.lfp9.Name = "lfp9";
-            this.lfp9.Size = new System.Drawing.Size(78, 21);
-            this.lfp9.TabIndex = 77;
-            // 
-            // lfp10
-            // 
-            this.lfp10.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp10.CheckOnClick = true;
-            this.lfp10.ColumnWidth = 90;
-            this.lfp10.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp10.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp10.FormattingEnabled = true;
-            this.lfp10.Items.AddRange(new object[] {
-            "Theta"});
-            this.lfp10.Location = new System.Drawing.Point(384, 564);
-            this.lfp10.MultiColumn = true;
-            this.lfp10.Name = "lfp10";
-            this.lfp10.Size = new System.Drawing.Size(78, 21);
-            this.lfp10.TabIndex = 78;
-            // 
-            // lfp11
-            // 
-            this.lfp11.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp11.CheckOnClick = true;
-            this.lfp11.ColumnWidth = 90;
-            this.lfp11.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp11.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp11.FormattingEnabled = true;
-            this.lfp11.Items.AddRange(new object[] {
-            "Theta"});
-            this.lfp11.Location = new System.Drawing.Point(384, 604);
-            this.lfp11.MultiColumn = true;
-            this.lfp11.Name = "lfp11";
-            this.lfp11.Size = new System.Drawing.Size(78, 21);
-            this.lfp11.TabIndex = 79;
-            // 
-            // lfp12
-            // 
-            this.lfp12.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp12.CheckOnClick = true;
-            this.lfp12.ColumnWidth = 90;
-            this.lfp12.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp12.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp12.FormattingEnabled = true;
-            this.lfp12.Items.AddRange(new object[] {
-            "Theta"});
-            this.lfp12.Location = new System.Drawing.Point(384, 644);
-            this.lfp12.MultiColumn = true;
-            this.lfp12.Name = "lfp12";
-            this.lfp12.Size = new System.Drawing.Size(78, 21);
-            this.lfp12.TabIndex = 80;
-            // 
-            // lfp13
-            // 
-            this.lfp13.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp13.CheckOnClick = true;
-            this.lfp13.ColumnWidth = 90;
-            this.lfp13.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp13.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp13.FormattingEnabled = true;
-            this.lfp13.Items.AddRange(new object[] {
-            "Theta"});
-            this.lfp13.Location = new System.Drawing.Point(384, 684);
-            this.lfp13.MultiColumn = true;
-            this.lfp13.Name = "lfp13";
-            this.lfp13.Size = new System.Drawing.Size(78, 21);
-            this.lfp13.TabIndex = 81;
-            // 
-            // lfp14
-            // 
-            this.lfp14.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp14.CheckOnClick = true;
-            this.lfp14.ColumnWidth = 90;
-            this.lfp14.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp14.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp14.FormattingEnabled = true;
-            this.lfp14.Items.AddRange(new object[] {
-            "Theta"});
-            this.lfp14.Location = new System.Drawing.Point(384, 724);
-            this.lfp14.MultiColumn = true;
-            this.lfp14.Name = "lfp14";
-            this.lfp14.Size = new System.Drawing.Size(78, 21);
-            this.lfp14.TabIndex = 82;
-            // 
-            // lfp15
-            // 
-            this.lfp15.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp15.CheckOnClick = true;
-            this.lfp15.ColumnWidth = 90;
-            this.lfp15.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp15.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp15.FormattingEnabled = true;
-            this.lfp15.Items.AddRange(new object[] {
-            "Theta"});
-            this.lfp15.Location = new System.Drawing.Point(384, 764);
-            this.lfp15.MultiColumn = true;
-            this.lfp15.Name = "lfp15";
-            this.lfp15.Size = new System.Drawing.Size(78, 21);
-            this.lfp15.TabIndex = 83;
-            // 
-            // lfp16
-            // 
-            this.lfp16.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp16.CheckOnClick = true;
-            this.lfp16.ColumnWidth = 90;
-            this.lfp16.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp16.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp16.FormattingEnabled = true;
-            this.lfp16.Items.AddRange(new object[] {
-            "Theta"});
-            this.lfp16.Location = new System.Drawing.Point(384, 804);
-            this.lfp16.MultiColumn = true;
-            this.lfp16.Name = "lfp16";
-            this.lfp16.Size = new System.Drawing.Size(78, 21);
-            this.lfp16.TabIndex = 84;
-            // 
-            // lfprf
-            // 
-            this.lfprf.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfprf.CheckOnClick = true;
-            this.lfprf.ColumnWidth = 90;
-            this.lfprf.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfprf.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfprf.FormattingEnabled = true;
-            this.lfprf.Items.AddRange(new object[] {
-            "Theta"});
-            this.lfprf.Location = new System.Drawing.Point(384, 844);
-            this.lfprf.MultiColumn = true;
-            this.lfprf.Name = "lfprf";
-            this.lfprf.Size = new System.Drawing.Size(78, 21);
-            this.lfprf.TabIndex = 85;
             // 
             // ephys_save
             // 
@@ -1358,335 +1038,196 @@
             this.label31.TabIndex = 112;
             this.label31.Text = "Reference : ";
             // 
-            // screenshots
+            // cellProp1
             // 
-            this.screenshots.AcceptsTab = true;
-            this.screenshots.AutoWordSelection = true;
-            this.screenshots.BackColor = System.Drawing.Color.Gainsboro;
-            this.screenshots.BulletIndent = 1;
-            this.screenshots.EnableAutoDragDrop = true;
-            this.screenshots.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.screenshots.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.screenshots.Location = new System.Drawing.Point(610, 562);
-            this.screenshots.Name = "screenshots";
-            this.screenshots.Size = new System.Drawing.Size(399, 240);
-            this.screenshots.TabIndex = 117;
-            this.screenshots.Text = "SCREENSHOTS:";
+            this.cellProp1.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp1.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp1.Location = new System.Drawing.Point(373, 123);
+            this.cellProp1.Name = "cellProp1";
+            this.cellProp1.Size = new System.Drawing.Size(181, 27);
+            this.cellProp1.TabIndex = 118;
             // 
-            // final
+            // label22
             // 
-            this.final.Location = new System.Drawing.Point(974, 12);
-            this.final.Name = "final";
-            this.final.Size = new System.Drawing.Size(35, 48);
-            this.final.TabIndex = 118;
-            this.final.Text = "";
-            this.final.Visible = false;
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Corbel", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label22.Location = new System.Drawing.Point(441, 46);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(107, 26);
+            this.label22.TabIndex = 119;
+            this.label22.Text = "Properties";
             // 
-            // rtb1
+            // cellProp7
             // 
-            this.rtb1.Location = new System.Drawing.Point(627, 27);
-            this.rtb1.Name = "rtb1";
-            this.rtb1.Size = new System.Drawing.Size(35, 48);
-            this.rtb1.TabIndex = 119;
-            this.rtb1.Text = "TEst";
-            this.rtb1.Visible = false;
+            this.cellProp7.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp7.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp7.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp7.Location = new System.Drawing.Point(373, 363);
+            this.cellProp7.Name = "cellProp7";
+            this.cellProp7.Size = new System.Drawing.Size(181, 27);
+            this.cellProp7.TabIndex = 120;
             // 
-            // lfp_sec_9
+            // cellProp5
             // 
-            this.lfp_sec_9.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_9.CheckOnClick = true;
-            this.lfp_sec_9.ColumnWidth = 90;
-            this.lfp_sec_9.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_9.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_9.FormattingEnabled = true;
-            this.lfp_sec_9.Items.AddRange(new object[] {
-            "SWRs"});
-            this.lfp_sec_9.Location = new System.Drawing.Point(493, 523);
-            this.lfp_sec_9.MultiColumn = true;
-            this.lfp_sec_9.Name = "lfp_sec_9";
-            this.lfp_sec_9.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_9.TabIndex = 120;
+            this.cellProp5.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp5.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp5.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp5.Location = new System.Drawing.Point(373, 283);
+            this.cellProp5.Name = "cellProp5";
+            this.cellProp5.Size = new System.Drawing.Size(181, 27);
+            this.cellProp5.TabIndex = 121;
             // 
-            // lfp_sec_10
+            // cellProp4
             // 
-            this.lfp_sec_10.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_10.CheckOnClick = true;
-            this.lfp_sec_10.ColumnWidth = 90;
-            this.lfp_sec_10.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_10.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_10.FormattingEnabled = true;
-            this.lfp_sec_10.Items.AddRange(new object[] {
-            "SWRs"});
-            this.lfp_sec_10.Location = new System.Drawing.Point(493, 563);
-            this.lfp_sec_10.MultiColumn = true;
-            this.lfp_sec_10.Name = "lfp_sec_10";
-            this.lfp_sec_10.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_10.TabIndex = 121;
+            this.cellProp4.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp4.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp4.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp4.Location = new System.Drawing.Point(373, 243);
+            this.cellProp4.Name = "cellProp4";
+            this.cellProp4.Size = new System.Drawing.Size(181, 27);
+            this.cellProp4.TabIndex = 122;
             // 
-            // lfp_sec_rf
+            // cellPropRR
             // 
-            this.lfp_sec_rf.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_rf.CheckOnClick = true;
-            this.lfp_sec_rf.ColumnWidth = 90;
-            this.lfp_sec_rf.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_rf.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_rf.FormattingEnabled = true;
-            this.lfp_sec_rf.Items.AddRange(new object[] {
-            "SWRs"});
-            this.lfp_sec_rf.Location = new System.Drawing.Point(494, 843);
-            this.lfp_sec_rf.MultiColumn = true;
-            this.lfp_sec_rf.Name = "lfp_sec_rf";
-            this.lfp_sec_rf.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_rf.TabIndex = 122;
+            this.cellPropRR.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellPropRR.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellPropRR.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellPropRR.Location = new System.Drawing.Point(373, 443);
+            this.cellPropRR.Name = "cellPropRR";
+            this.cellPropRR.Size = new System.Drawing.Size(181, 27);
+            this.cellPropRR.TabIndex = 123;
             // 
-            // lfp_sec_14
+            // cellProp3
             // 
-            this.lfp_sec_14.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_14.CheckOnClick = true;
-            this.lfp_sec_14.ColumnWidth = 90;
-            this.lfp_sec_14.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_14.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_14.FormattingEnabled = true;
-            this.lfp_sec_14.Items.AddRange(new object[] {
-            "SWRs"});
-            this.lfp_sec_14.Location = new System.Drawing.Point(493, 723);
-            this.lfp_sec_14.MultiColumn = true;
-            this.lfp_sec_14.Name = "lfp_sec_14";
-            this.lfp_sec_14.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_14.TabIndex = 123;
+            this.cellProp3.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp3.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp3.Location = new System.Drawing.Point(373, 203);
+            this.cellProp3.Name = "cellProp3";
+            this.cellProp3.Size = new System.Drawing.Size(181, 27);
+            this.cellProp3.TabIndex = 124;
             // 
-            // lfp_sec_13
+            // cellProp2
             // 
-            this.lfp_sec_13.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_13.CheckOnClick = true;
-            this.lfp_sec_13.ColumnWidth = 90;
-            this.lfp_sec_13.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_13.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_13.FormattingEnabled = true;
-            this.lfp_sec_13.Items.AddRange(new object[] {
-            "SWRs"});
-            this.lfp_sec_13.Location = new System.Drawing.Point(493, 683);
-            this.lfp_sec_13.MultiColumn = true;
-            this.lfp_sec_13.Name = "lfp_sec_13";
-            this.lfp_sec_13.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_13.TabIndex = 124;
+            this.cellProp2.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp2.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp2.Location = new System.Drawing.Point(373, 163);
+            this.cellProp2.Name = "cellProp2";
+            this.cellProp2.Size = new System.Drawing.Size(181, 27);
+            this.cellProp2.TabIndex = 125;
             // 
-            // lfp_sec_12
+            // cellProp6
             // 
-            this.lfp_sec_12.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_12.CheckOnClick = true;
-            this.lfp_sec_12.ColumnWidth = 90;
-            this.lfp_sec_12.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_12.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_12.FormattingEnabled = true;
-            this.lfp_sec_12.Items.AddRange(new object[] {
-            "SWRs"});
-            this.lfp_sec_12.Location = new System.Drawing.Point(494, 643);
-            this.lfp_sec_12.MultiColumn = true;
-            this.lfp_sec_12.Name = "lfp_sec_12";
-            this.lfp_sec_12.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_12.TabIndex = 125;
+            this.cellProp6.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp6.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp6.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp6.Location = new System.Drawing.Point(373, 323);
+            this.cellProp6.Name = "cellProp6";
+            this.cellProp6.Size = new System.Drawing.Size(181, 27);
+            this.cellProp6.TabIndex = 126;
             // 
-            // lfp_sec_11
+            // cellProp8
             // 
-            this.lfp_sec_11.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_11.CheckOnClick = true;
-            this.lfp_sec_11.ColumnWidth = 90;
-            this.lfp_sec_11.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_11.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_11.FormattingEnabled = true;
-            this.lfp_sec_11.Items.AddRange(new object[] {
-            "SWRs"});
-            this.lfp_sec_11.Location = new System.Drawing.Point(494, 603);
-            this.lfp_sec_11.MultiColumn = true;
-            this.lfp_sec_11.Name = "lfp_sec_11";
-            this.lfp_sec_11.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_11.TabIndex = 126;
+            this.cellProp8.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp8.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp8.Location = new System.Drawing.Point(373, 403);
+            this.cellProp8.Name = "cellProp8";
+            this.cellProp8.Size = new System.Drawing.Size(181, 27);
+            this.cellProp8.TabIndex = 127;
             // 
-            // lfp_sec_15
+            // cellProp16
             // 
-            this.lfp_sec_15.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_15.CheckOnClick = true;
-            this.lfp_sec_15.ColumnWidth = 90;
-            this.lfp_sec_15.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_15.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_15.FormattingEnabled = true;
-            this.lfp_sec_15.Items.AddRange(new object[] {
-            "SWRs"});
-            this.lfp_sec_15.Location = new System.Drawing.Point(493, 763);
-            this.lfp_sec_15.MultiColumn = true;
-            this.lfp_sec_15.Name = "lfp_sec_15";
-            this.lfp_sec_15.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_15.TabIndex = 127;
+            this.cellProp16.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp16.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp16.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp16.Location = new System.Drawing.Point(373, 802);
+            this.cellProp16.Name = "cellProp16";
+            this.cellProp16.Size = new System.Drawing.Size(181, 27);
+            this.cellProp16.TabIndex = 136;
             // 
-            // lfp_sec_16
+            // cellProp14
             // 
-            this.lfp_sec_16.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_16.CheckOnClick = true;
-            this.lfp_sec_16.ColumnWidth = 90;
-            this.lfp_sec_16.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_16.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_16.FormattingEnabled = true;
-            this.lfp_sec_16.Items.AddRange(new object[] {
-            "SWRs"});
-            this.lfp_sec_16.Location = new System.Drawing.Point(493, 803);
-            this.lfp_sec_16.MultiColumn = true;
-            this.lfp_sec_16.Name = "lfp_sec_16";
-            this.lfp_sec_16.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_16.TabIndex = 128;
+            this.cellProp14.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp14.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp14.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp14.Location = new System.Drawing.Point(373, 722);
+            this.cellProp14.Name = "cellProp14";
+            this.cellProp14.Size = new System.Drawing.Size(181, 27);
+            this.cellProp14.TabIndex = 135;
             // 
-            // lfp_sec_rr
+            // cellProp10
             // 
-            this.lfp_sec_rr.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_rr.CheckOnClick = true;
-            this.lfp_sec_rr.ColumnWidth = 90;
-            this.lfp_sec_rr.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_rr.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_rr.FormattingEnabled = true;
-            this.lfp_sec_rr.Items.AddRange(new object[] {
-            "Spindles"});
-            this.lfp_sec_rr.Location = new System.Drawing.Point(498, 446);
-            this.lfp_sec_rr.MultiColumn = true;
-            this.lfp_sec_rr.Name = "lfp_sec_rr";
-            this.lfp_sec_rr.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_rr.TabIndex = 137;
-            this.lfp_sec_rr.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.cellProp10.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp10.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp10.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp10.Location = new System.Drawing.Point(373, 562);
+            this.cellProp10.Name = "cellProp10";
+            this.cellProp10.Size = new System.Drawing.Size(181, 27);
+            this.cellProp10.TabIndex = 134;
             // 
-            // lfp_sec_8
+            // cellProp11
             // 
-            this.lfp_sec_8.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_8.CheckOnClick = true;
-            this.lfp_sec_8.ColumnWidth = 90;
-            this.lfp_sec_8.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_8.FormattingEnabled = true;
-            this.lfp_sec_8.Items.AddRange(new object[] {
-            "Spindles"});
-            this.lfp_sec_8.Location = new System.Drawing.Point(498, 406);
-            this.lfp_sec_8.MultiColumn = true;
-            this.lfp_sec_8.Name = "lfp_sec_8";
-            this.lfp_sec_8.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_8.TabIndex = 136;
-            this.lfp_sec_8.SelectedIndexChanged += new System.EventHandler(this.checkedListBox2_SelectedIndexChanged);
+            this.cellProp11.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp11.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp11.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp11.Location = new System.Drawing.Point(373, 602);
+            this.cellProp11.Name = "cellProp11";
+            this.cellProp11.Size = new System.Drawing.Size(181, 27);
+            this.cellProp11.TabIndex = 133;
             // 
-            // lfp_sec_7
+            // cellPropRF
             // 
-            this.lfp_sec_7.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_7.CheckOnClick = true;
-            this.lfp_sec_7.ColumnWidth = 90;
-            this.lfp_sec_7.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_7.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_7.FormattingEnabled = true;
-            this.lfp_sec_7.Items.AddRange(new object[] {
-            "Spindles"});
-            this.lfp_sec_7.Location = new System.Drawing.Point(498, 366);
-            this.lfp_sec_7.MultiColumn = true;
-            this.lfp_sec_7.Name = "lfp_sec_7";
-            this.lfp_sec_7.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_7.TabIndex = 135;
-            this.lfp_sec_7.SelectedIndexChanged += new System.EventHandler(this.checkedListBox3_SelectedIndexChanged);
+            this.cellPropRF.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellPropRF.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellPropRF.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellPropRF.Location = new System.Drawing.Point(373, 842);
+            this.cellPropRF.Name = "cellPropRF";
+            this.cellPropRF.Size = new System.Drawing.Size(181, 27);
+            this.cellPropRF.TabIndex = 132;
             // 
-            // lfp_sec_6
+            // cellProp12
             // 
-            this.lfp_sec_6.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_6.CheckOnClick = true;
-            this.lfp_sec_6.ColumnWidth = 90;
-            this.lfp_sec_6.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_6.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_6.FormattingEnabled = true;
-            this.lfp_sec_6.Items.AddRange(new object[] {
-            "Spindles"});
-            this.lfp_sec_6.Location = new System.Drawing.Point(498, 326);
-            this.lfp_sec_6.MultiColumn = true;
-            this.lfp_sec_6.Name = "lfp_sec_6";
-            this.lfp_sec_6.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_6.TabIndex = 134;
-            this.lfp_sec_6.SelectedIndexChanged += new System.EventHandler(this.checkedListBox4_SelectedIndexChanged);
+            this.cellProp12.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp12.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp12.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp12.Location = new System.Drawing.Point(373, 642);
+            this.cellProp12.Name = "cellProp12";
+            this.cellProp12.Size = new System.Drawing.Size(181, 27);
+            this.cellProp12.TabIndex = 131;
             // 
-            // lfp_sec_5
+            // cellProp13
             // 
-            this.lfp_sec_5.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_5.CheckOnClick = true;
-            this.lfp_sec_5.ColumnWidth = 90;
-            this.lfp_sec_5.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_5.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_5.FormattingEnabled = true;
-            this.lfp_sec_5.Items.AddRange(new object[] {
-            "Spindles"});
-            this.lfp_sec_5.Location = new System.Drawing.Point(498, 286);
-            this.lfp_sec_5.MultiColumn = true;
-            this.lfp_sec_5.Name = "lfp_sec_5";
-            this.lfp_sec_5.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_5.TabIndex = 133;
-            this.lfp_sec_5.SelectedIndexChanged += new System.EventHandler(this.checkedListBox5_SelectedIndexChanged);
+            this.cellProp13.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp13.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp13.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp13.Location = new System.Drawing.Point(373, 682);
+            this.cellProp13.Name = "cellProp13";
+            this.cellProp13.Size = new System.Drawing.Size(181, 27);
+            this.cellProp13.TabIndex = 130;
             // 
-            // lfp_sec_4
+            // cellProp15
             // 
-            this.lfp_sec_4.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_4.CheckOnClick = true;
-            this.lfp_sec_4.ColumnWidth = 90;
-            this.lfp_sec_4.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_4.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_4.FormattingEnabled = true;
-            this.lfp_sec_4.Items.AddRange(new object[] {
-            "Spindles"});
-            this.lfp_sec_4.Location = new System.Drawing.Point(498, 246);
-            this.lfp_sec_4.MultiColumn = true;
-            this.lfp_sec_4.Name = "lfp_sec_4";
-            this.lfp_sec_4.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_4.TabIndex = 132;
-            this.lfp_sec_4.SelectedIndexChanged += new System.EventHandler(this.checkedListBox6_SelectedIndexChanged);
+            this.cellProp15.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp15.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp15.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp15.Location = new System.Drawing.Point(373, 762);
+            this.cellProp15.Name = "cellProp15";
+            this.cellProp15.Size = new System.Drawing.Size(181, 27);
+            this.cellProp15.TabIndex = 129;
             // 
-            // lfp_sec_3
+            // cellProp9
             // 
-            this.lfp_sec_3.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_3.CheckOnClick = true;
-            this.lfp_sec_3.ColumnWidth = 90;
-            this.lfp_sec_3.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_3.FormattingEnabled = true;
-            this.lfp_sec_3.Items.AddRange(new object[] {
-            "Spindles"});
-            this.lfp_sec_3.Location = new System.Drawing.Point(498, 206);
-            this.lfp_sec_3.MultiColumn = true;
-            this.lfp_sec_3.Name = "lfp_sec_3";
-            this.lfp_sec_3.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_3.TabIndex = 131;
-            this.lfp_sec_3.SelectedIndexChanged += new System.EventHandler(this.checkedListBox7_SelectedIndexChanged);
-            // 
-            // lfp_sec_2
-            // 
-            this.lfp_sec_2.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_2.CheckOnClick = true;
-            this.lfp_sec_2.ColumnWidth = 90;
-            this.lfp_sec_2.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_2.FormattingEnabled = true;
-            this.lfp_sec_2.Items.AddRange(new object[] {
-            "Spindles"});
-            this.lfp_sec_2.Location = new System.Drawing.Point(498, 166);
-            this.lfp_sec_2.MultiColumn = true;
-            this.lfp_sec_2.Name = "lfp_sec_2";
-            this.lfp_sec_2.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_2.TabIndex = 130;
-            this.lfp_sec_2.SelectedIndexChanged += new System.EventHandler(this.checkedListBox8_SelectedIndexChanged);
-            // 
-            // lfp_sec_1
-            // 
-            this.lfp_sec_1.BackColor = System.Drawing.Color.Gainsboro;
-            this.lfp_sec_1.CheckOnClick = true;
-            this.lfp_sec_1.ColumnWidth = 90;
-            this.lfp_sec_1.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lfp_sec_1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.lfp_sec_1.FormattingEnabled = true;
-            this.lfp_sec_1.Items.AddRange(new object[] {
-            "Spindles"});
-            this.lfp_sec_1.Location = new System.Drawing.Point(498, 126);
-            this.lfp_sec_1.MultiColumn = true;
-            this.lfp_sec_1.Name = "lfp_sec_1";
-            this.lfp_sec_1.Size = new System.Drawing.Size(78, 21);
-            this.lfp_sec_1.TabIndex = 129;
-            this.lfp_sec_1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox9_SelectedIndexChanged);
+            this.cellProp9.BackColor = System.Drawing.Color.Gainsboro;
+            this.cellProp9.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cellProp9.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.cellProp9.Location = new System.Drawing.Point(373, 522);
+            this.cellProp9.Name = "cellProp9";
+            this.cellProp9.Size = new System.Drawing.Size(181, 27);
+            this.cellProp9.TabIndex = 128;
             // 
             // Ephys
             // 
@@ -1695,27 +1236,25 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1034, 887);
-            this.Controls.Add(this.lfp_sec_rr);
-            this.Controls.Add(this.lfp_sec_8);
-            this.Controls.Add(this.lfp_sec_7);
-            this.Controls.Add(this.lfp_sec_6);
-            this.Controls.Add(this.lfp_sec_5);
-            this.Controls.Add(this.lfp_sec_4);
-            this.Controls.Add(this.lfp_sec_3);
-            this.Controls.Add(this.lfp_sec_2);
-            this.Controls.Add(this.lfp_sec_1);
-            this.Controls.Add(this.lfp_sec_16);
-            this.Controls.Add(this.lfp_sec_15);
-            this.Controls.Add(this.lfp_sec_11);
-            this.Controls.Add(this.lfp_sec_12);
-            this.Controls.Add(this.lfp_sec_13);
-            this.Controls.Add(this.lfp_sec_14);
-            this.Controls.Add(this.lfp_sec_rf);
-            this.Controls.Add(this.lfp_sec_10);
-            this.Controls.Add(this.lfp_sec_9);
-            this.Controls.Add(this.rtb1);
-            this.Controls.Add(this.final);
-            this.Controls.Add(this.screenshots);
+            this.Controls.Add(this.cellProp16);
+            this.Controls.Add(this.cellProp14);
+            this.Controls.Add(this.cellProp10);
+            this.Controls.Add(this.cellProp11);
+            this.Controls.Add(this.cellPropRF);
+            this.Controls.Add(this.cellProp12);
+            this.Controls.Add(this.cellProp13);
+            this.Controls.Add(this.cellProp15);
+            this.Controls.Add(this.cellProp9);
+            this.Controls.Add(this.cellProp8);
+            this.Controls.Add(this.cellProp6);
+            this.Controls.Add(this.cellProp2);
+            this.Controls.Add(this.cellProp3);
+            this.Controls.Add(this.cellPropRR);
+            this.Controls.Add(this.cellProp4);
+            this.Controls.Add(this.cellProp5);
+            this.Controls.Add(this.cellProp7);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.cellProp1);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.HC_refAD);
             this.Controls.Add(this.label30);
@@ -1745,24 +1284,6 @@
             this.Controls.Add(this.ACC_ref);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.ephys_save);
-            this.Controls.Add(this.lfprf);
-            this.Controls.Add(this.lfp16);
-            this.Controls.Add(this.lfp15);
-            this.Controls.Add(this.lfp14);
-            this.Controls.Add(this.lfp13);
-            this.Controls.Add(this.lfp12);
-            this.Controls.Add(this.lfp11);
-            this.Controls.Add(this.lfp10);
-            this.Controls.Add(this.lfp9);
-            this.Controls.Add(this.lfprr);
-            this.Controls.Add(this.lfp8);
-            this.Controls.Add(this.lfp7);
-            this.Controls.Add(this.lfp6);
-            this.Controls.Add(this.lfp5);
-            this.Controls.Add(this.lfp4);
-            this.Controls.Add(this.lfp3);
-            this.Controls.Add(this.lfp2);
-            this.Controls.Add(this.lfp1);
             this.Controls.Add(this.enter);
             this.Controls.Add(this.numrf);
             this.Controls.Add(this.num16);
@@ -1785,7 +1306,6 @@
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label23);
-            this.Controls.Add(this.label22);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
@@ -1820,8 +1340,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox box;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -1843,7 +1361,6 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
@@ -1866,24 +1383,6 @@
         private System.Windows.Forms.TextBox num10;
         private System.Windows.Forms.TextBox num9;
         private System.Windows.Forms.Button enter;
-        private System.Windows.Forms.CheckedListBox lfp1;
-        private System.Windows.Forms.CheckedListBox lfp2;
-        private System.Windows.Forms.CheckedListBox lfp3;
-        private System.Windows.Forms.CheckedListBox lfp4;
-        private System.Windows.Forms.CheckedListBox lfp5;
-        private System.Windows.Forms.CheckedListBox lfp6;
-        private System.Windows.Forms.CheckedListBox lfp7;
-        private System.Windows.Forms.CheckedListBox lfp8;
-        private System.Windows.Forms.CheckedListBox lfprr;
-        private System.Windows.Forms.CheckedListBox lfp9;
-        private System.Windows.Forms.CheckedListBox lfp10;
-        private System.Windows.Forms.CheckedListBox lfp11;
-        private System.Windows.Forms.CheckedListBox lfp12;
-        private System.Windows.Forms.CheckedListBox lfp13;
-        private System.Windows.Forms.CheckedListBox lfp14;
-        private System.Windows.Forms.CheckedListBox lfp15;
-        private System.Windows.Forms.CheckedListBox lfp16;
-        private System.Windows.Forms.CheckedListBox lfprf;
         private System.Windows.Forms.Button ephys_save;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox ACC_ref;
@@ -1913,26 +1412,25 @@
         private System.Windows.Forms.TextBox HC_refAD;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.RichTextBox screenshots;
-        private System.Windows.Forms.RichTextBox final;
-        private System.Windows.Forms.RichTextBox rtb1;
-        private System.Windows.Forms.CheckedListBox lfp_sec_9;
-        private System.Windows.Forms.CheckedListBox lfp_sec_10;
-        private System.Windows.Forms.CheckedListBox lfp_sec_rf;
-        private System.Windows.Forms.CheckedListBox lfp_sec_14;
-        private System.Windows.Forms.CheckedListBox lfp_sec_13;
-        private System.Windows.Forms.CheckedListBox lfp_sec_12;
-        private System.Windows.Forms.CheckedListBox lfp_sec_11;
-        private System.Windows.Forms.CheckedListBox lfp_sec_15;
-        private System.Windows.Forms.CheckedListBox lfp_sec_16;
-        private System.Windows.Forms.CheckedListBox lfp_sec_rr;
-        private System.Windows.Forms.CheckedListBox lfp_sec_8;
-        private System.Windows.Forms.CheckedListBox lfp_sec_7;
-        private System.Windows.Forms.CheckedListBox lfp_sec_6;
-        private System.Windows.Forms.CheckedListBox lfp_sec_5;
-        private System.Windows.Forms.CheckedListBox lfp_sec_4;
-        private System.Windows.Forms.CheckedListBox lfp_sec_3;
-        private System.Windows.Forms.CheckedListBox lfp_sec_2;
-        private System.Windows.Forms.CheckedListBox lfp_sec_1;
+        public System.Windows.Forms.RichTextBox box;
+        private System.Windows.Forms.TextBox cellProp1;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox cellProp7;
+        private System.Windows.Forms.TextBox cellProp5;
+        private System.Windows.Forms.TextBox cellProp4;
+        private System.Windows.Forms.TextBox cellPropRR;
+        private System.Windows.Forms.TextBox cellProp3;
+        private System.Windows.Forms.TextBox cellProp2;
+        private System.Windows.Forms.TextBox cellProp6;
+        private System.Windows.Forms.TextBox cellProp8;
+        private System.Windows.Forms.TextBox cellProp16;
+        private System.Windows.Forms.TextBox cellProp14;
+        private System.Windows.Forms.TextBox cellProp10;
+        private System.Windows.Forms.TextBox cellProp11;
+        private System.Windows.Forms.TextBox cellPropRF;
+        private System.Windows.Forms.TextBox cellProp12;
+        private System.Windows.Forms.TextBox cellProp13;
+        private System.Windows.Forms.TextBox cellProp15;
+        private System.Windows.Forms.TextBox cellProp9;
     }
 }

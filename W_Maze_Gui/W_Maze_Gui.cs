@@ -81,11 +81,12 @@ namespace W_Maze_Gui
         public static bool recordingStatus = true;
         public static string newRatNo;
         public static string newRatAge;
+        public static bool cheetahConnected = false;
 
 
 
 
-        private Window NeuraLynxWindow { get; }
+        // private Window NeuraLynxWindow { get; }
 
         public W_Maze_Gui()
         {   
@@ -118,7 +119,6 @@ namespace W_Maze_Gui
 
             //Initializes MNetcom to connect to NETCOM for ONLINE connection with CHEETAH
             mNetComClient = new MNetCom.MNetComClient();
-            
 
 
 
@@ -252,6 +252,8 @@ namespace W_Maze_Gui
                 Recording_Time.Enabled = true;
                 SessionHasBegun = true;
                 updateTime();
+                Ephys.runStart = true;
+                
                 if (recordButton.BackColor != Color.AliceBlue && recordingStatus == true)
                 {
                     if (MessageBox.Show(this, "Is Cheetah Recording", "Cheetah Recording", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.No)
@@ -858,7 +860,8 @@ namespace W_Maze_Gui
             startPreSleep.ForeColor = Color.GhostWhite;
             startPreSleep.BackColor = Color.SeaGreen;
             string reply = "";
-            //mNetComClient.SendCommand("-PostEvent \"StartSleepPre\" 0 0", ref reply);
+            Ephys.presleepStart = true;
+
             if (!(mNetComClient.SendCommand("-PostEvent \"StartSleepPre\" 0 0", ref reply)))
             {
                 MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
@@ -912,6 +915,7 @@ namespace W_Maze_Gui
             startPostSleep.ForeColor = Color.GhostWhite;
             startPostSleep.BackColor = Color.SeaGreen;
             string reply = "";
+            Ephys.postsleepStart = true;
             if (!(mNetComClient.SendCommand("-PostEvent \"StartSleepPost\" 0 0", ref reply)))
             {
                 MessageBox.Show(this, "Send command to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
@@ -966,6 +970,56 @@ namespace W_Maze_Gui
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void CheetahConnect_Click(object sender, EventArgs e)
+        {
+            if (cheetahConnected == false)
+            {
+                object IP_address = "localhost";
+                if (mNetComClient.ConnectToServer(IP_address))
+                {
+                    var isNlxConnected = mNetComClient.AreWeConnected();
+                    if (!isNlxConnected)
+                    {
+                        MessageBox.Show(this, "Connection to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "Connected to Server", "NetCom Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+
+                    }
+                    
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(this, "Connection to server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+
+                CheetahConnect.BackColor = Color.AliceBlue;
+                CheetahConnect.Text = "CHEETAH DISCONNECT";
+                cheetahConnected = true;
+            }
+            if (cheetahConnected == true)
+            {
+                if (mNetComClient.AreWeConnected())
+                {
+                    if (mNetComClient.DisconnectFromServer())
+                    {
+                        CheetahConnect.BackColor = Color.Transparent;
+                        CheetahConnect.Text = "CHEETAH CONNECT";
+                        cheetahConnected = FALSE;
+                    }
+
+                    else
+                    {
+                        MessageBox.Show(this, "Disconnection from server failed", "NetCom Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+
 
         }
     }

@@ -16,26 +16,28 @@ namespace W_Maze_Gui
     public partial class Ephys : Form
     {
         public dynamic currrentRat = W_Maze_Gui.chosenRat;
+        public static bool presleepStart = false;
+        public static bool runStart = false;
+        public static bool postsleepStart = false;
 
 
-       
+
         public Ephys()
         {
             InitializeComponent();
-
+            if (presleepStart == true) { box.AppendText("PRE-SLEEP \r\n"); }
+            if (runStart == true) { box.AppendText("WMAZE RUN \r\n"); }
+            if (postsleepStart == true) { box.AppendText("POST-SLEEP \r\n"); }
 
 
         }
-
 
 
         // ##################################################################################################################################
-        private void quality1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-        }
-
+      
         private void enter_Click(object sender, EventArgs e)
         {
+            enter.Hide();
             box.Text = "";
             box.AppendText($"{DateTime.Now.ToString()} \r\n");
             //ACC
@@ -47,54 +49,27 @@ namespace W_Maze_Gui
             {
                 string qual = "quality" + i;
                 string numbox = "num" + i;
-                string lfp = "lfp" + i;
-                string lfp_sec = "lfp_sec_" + i;
+                string cellProp = "cellProp" + i;
+
 
                 CheckedListBox clb = (CheckedListBox)this.Controls[qual];
                 if (clb.CheckedItems.Count > 0)
                 {
-                    box.AppendText($"TT{i}: {clb.SelectedItem.ToString()}, Cells = {this.Controls[numbox].Text} ");
+                    box.AppendText($"TT{i}: {clb.SelectedItem.ToString()}, Cells = {this.Controls[numbox].Text}, {this.Controls[cellProp].Text} ");
                 }
 
-                CheckedListBox clb_lfp = (CheckedListBox)this.Controls[lfp];
-                CheckedListBox clb_lfp_sec = (CheckedListBox)this.Controls[lfp_sec];
-
-                if (clb_lfp.CheckedItems.Count > 0 && clb_lfp_sec.CheckedItems.Count>0)
-                {
-                    box.AppendText($"LFP{i}: {clb_lfp.SelectedItem.ToString()} {clb_lfp_sec.SelectedItem.ToString()} \r\n ");
-                }
-                else if (clb_lfp.CheckedItems.Count > 0)
-                {
-                    box.AppendText($"LFP{i}: {clb_lfp.SelectedItem.ToString()} \r\n");
-                }
-                else if (clb_lfp_sec.CheckedItems.Count > 0)
-                {
-                    box.AppendText($"LFP{i}: {clb_lfp_sec.SelectedItem.ToString()} \r\n");
-                }
                 else if (clb.CheckedItems.Count > 0)
                 {
                     box.AppendText(" \r\n");
                 }
             }
 
-            if (qualityrr.CheckedItems.Count > 0) { box.AppendText($"RR: {qualityrr.SelectedItem.ToString()}, Cells = {numrr.Text}  "); }
-            if (lfprr.CheckedItems.Count > 0 || lfp_sec_rr.CheckedItems.Count > 0)
-            {
-                box.AppendText($"LFP RR: {lfprr.SelectedItem.ToString()} {lfp_sec_rr.SelectedItem.ToString()} \r\n ");
-            }
-            else if (lfprr.CheckedItems.Count > 0)
-            {
-                box.AppendText($"LFP RR: {lfprr.SelectedItem.ToString()} \r\n");
-            }
-            else if (lfp_sec_rr.CheckedItems.Count > 0)
-            {
-                box.AppendText($"LFP RR: {lfp_sec_rr.SelectedItem.ToString()} \r\n");
-            }
+            if (qualityrr.CheckedItems.Count > 0) { box.AppendText($"RR: {qualityrr.SelectedItem.ToString()}, Cells = {numrr.Text}  , {cellPropRR.Text}"); }
+
 
             box.AppendText(Environment.NewLine);
 
             //HIPPOCAMPUS
-
 
             box.AppendText("HIPPOCAMPUS TETRODES \r\n");
             box.AppendText(Environment.NewLine);
@@ -103,55 +78,29 @@ namespace W_Maze_Gui
             {
                 string qual = "quality" + i;
                 string numbox = "num" + i;
-                string lfp = "lfp" + i;
-                string lfp_sec = "lfp_sec_" + i;
+                string cellProp = "cellProp" + i;
+
 
                 CheckedListBox clb = (CheckedListBox)this.Controls[qual];
                 if (clb.CheckedItems.Count > 0)
                 {
-                    box.AppendText($"TT{i}: {clb.SelectedItem.ToString()}, Cells = {this.Controls[numbox].Text}  ");
+                    box.AppendText($"TT{i}: {clb.SelectedItem.ToString()}, Cells = {this.Controls[numbox].Text} , {this.Controls[cellProp].Text} ");
                 }
-                CheckedListBox clb_lfp = (CheckedListBox)this.Controls[lfp];
-                CheckedListBox clb_lfp_sec = (CheckedListBox)this.Controls[lfp_sec];
-                if (clb_lfp.CheckedItems.Count > 0 && clb_lfp_sec.CheckedItems.Count > 0)
-                {
-                    box.AppendText($"LFP{i}: {clb_lfp.SelectedItem.ToString()} {clb_lfp_sec.SelectedItem.ToString()} \r\n ");
-                }
-                else if (clb_lfp.CheckedItems.Count > 0)
-                {
-                    box.AppendText($"LFP{i}: {clb_lfp.SelectedItem.ToString()} \r\n");
-                }
-                else if (clb_lfp_sec.CheckedItems.Count > 0)
-                {
-                    box.AppendText($"LFP{i}: {clb_lfp_sec.SelectedItem.ToString()} \r\n");
-                }
+
                 else if (clb.CheckedItems.Count > 0)
                 {
                     box.AppendText(" \r\n");
                 }
 
             }
-            if (qualityrf.CheckedItems.Count > 0) { box.AppendText($"RF: {qualityrf.SelectedItem.ToString()}, Cells = {numrf.Text}  "); }
-            if (lfprf.CheckedItems.Count > 0 || lfp_sec_rf.CheckedItems.Count > 0)
-            {
-                box.AppendText($"LFP RF: {lfprf.SelectedItem.ToString()} {lfp_sec_rf.SelectedItem.ToString()} \r\n ");
-            }
-            else if (lfprf.CheckedItems.Count > 0)
-            {
-                box.AppendText($"LFP: {lfprf.SelectedItem.ToString()} \r\n");
-            }
-            else if (lfp_sec_rf.CheckedItems.Count > 0)
-            {
-                box.AppendText($"LFP: {lfp_sec_rf.SelectedItem.ToString()} \r\n");
-            }
+            if (qualityrf.CheckedItems.Count > 0) { box.AppendText($"RF: {qualityrf.SelectedItem.ToString()}, Cells = {numrf.Text} , {cellPropRF.Text} "); }
+
 
             box.AppendText(Environment.NewLine);
 
             box.AppendText("Changes during Session: \r\n");
             box.AppendText(Environment.NewLine);
-            box.AppendText("Other Info:\r\n ");
-            box.AppendText(Environment.NewLine);
-            box.AppendText("Screenshots: \r\n");
+            
         }
 
         private void box_TextChanged(object sender, EventArgs e)
@@ -209,55 +158,7 @@ namespace W_Maze_Gui
 
         }
 
-        private void quality2_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void checkedListBox9_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox6_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox7_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox8_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 
