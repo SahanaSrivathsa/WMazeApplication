@@ -100,6 +100,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.ephys = new System.Windows.Forms.Button();
             this.CheetahConnect = new System.Windows.Forms.Button();
+            this.cheetahDisconnect = new System.Windows.Forms.Button();
+            this.pauseTimer = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -321,9 +323,9 @@
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.Color.Black;
-            this.saveButton.Location = new System.Drawing.Point(747, 576);
+            this.saveButton.Location = new System.Drawing.Point(784, 563);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(115, 44);
+            this.saveButton.Size = new System.Drawing.Size(115, 50);
             this.saveButton.TabIndex = 21;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = false;
@@ -549,7 +551,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label4.Location = new System.Drawing.Point(289, 370);
+            this.label4.Location = new System.Drawing.Point(290, 385);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 21);
             this.label4.TabIndex = 29;
@@ -924,9 +926,9 @@
             this.ephys.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ephys.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ephys.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ephys.Location = new System.Drawing.Point(293, 572);
+            this.ephys.Location = new System.Drawing.Point(293, 576);
             this.ephys.Name = "ephys";
-            this.ephys.Size = new System.Drawing.Size(343, 58);
+            this.ephys.Size = new System.Drawing.Size(336, 37);
             this.ephys.TabIndex = 59;
             this.ephys.Text = "Ephys Properties";
             this.ephys.UseVisualStyleBackColor = false;
@@ -937,15 +939,45 @@
             this.CheetahConnect.BackColor = System.Drawing.Color.Transparent;
             this.CheetahConnect.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.CheetahConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CheetahConnect.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheetahConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheetahConnect.ForeColor = System.Drawing.Color.AliceBlue;
-            this.CheetahConnect.Location = new System.Drawing.Point(294, 10);
+            this.CheetahConnect.Location = new System.Drawing.Point(260, 10);
             this.CheetahConnect.Name = "CheetahConnect";
-            this.CheetahConnect.Size = new System.Drawing.Size(342, 40);
+            this.CheetahConnect.Size = new System.Drawing.Size(115, 50);
             this.CheetahConnect.TabIndex = 60;
             this.CheetahConnect.Text = "CHEETAH CONNECT";
             this.CheetahConnect.UseVisualStyleBackColor = false;
             this.CheetahConnect.Click += new System.EventHandler(this.CheetahConnect_Click);
+            // 
+            // cheetahDisconnect
+            // 
+            this.cheetahDisconnect.BackColor = System.Drawing.Color.Transparent;
+            this.cheetahDisconnect.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.cheetahDisconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cheetahDisconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cheetahDisconnect.ForeColor = System.Drawing.Color.AliceBlue;
+            this.cheetahDisconnect.Location = new System.Drawing.Point(416, 10);
+            this.cheetahDisconnect.Name = "cheetahDisconnect";
+            this.cheetahDisconnect.Size = new System.Drawing.Size(116, 50);
+            this.cheetahDisconnect.TabIndex = 61;
+            this.cheetahDisconnect.Text = "CHEETAH DISCONNECT";
+            this.cheetahDisconnect.UseVisualStyleBackColor = false;
+            this.cheetahDisconnect.Click += new System.EventHandler(this.cheetahDisconnect_Click);
+            // 
+            // pauseTimer
+            // 
+            this.pauseTimer.BackColor = System.Drawing.Color.Transparent;
+            this.pauseTimer.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.pauseTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pauseTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseTimer.ForeColor = System.Drawing.Color.AliceBlue;
+            this.pauseTimer.Location = new System.Drawing.Point(573, 10);
+            this.pauseTimer.Name = "pauseTimer";
+            this.pauseTimer.Size = new System.Drawing.Size(116, 50);
+            this.pauseTimer.TabIndex = 62;
+            this.pauseTimer.Text = "PAUSE TIMER";
+            this.pauseTimer.UseVisualStyleBackColor = false;
+            this.pauseTimer.Click += new System.EventHandler(this.pauseTimer_Click);
             // 
             // W_Maze_Gui
             // 
@@ -954,6 +986,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.ClientSize = new System.Drawing.Size(927, 649);
+            this.Controls.Add(this.pauseTimer);
+            this.Controls.Add(this.cheetahDisconnect);
             this.Controls.Add(this.CheetahConnect);
             this.Controls.Add(this.ephys);
             this.Controls.Add(this.panel11);
@@ -993,7 +1027,6 @@
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ratSelectionLabel);
-            this.Controls.Add(this.resume);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1108,6 +1141,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button CheetahConnect;
+        private System.Windows.Forms.Button cheetahDisconnect;
+        private System.Windows.Forms.Button pauseTimer;
     }
 }
 

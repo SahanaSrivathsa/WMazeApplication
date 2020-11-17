@@ -18,7 +18,6 @@ namespace W_Maze_Gui
     {
         public static string currrentRat = W_Maze_Gui.chosenRat;
         public static string folderPath = $@"C:\Users\sahanasrivathsa\Documents\Barnes Lab\Wmaze\RatData\{currrentRat}\Rat_EphysData\Session{W_Maze_Gui.sessionNumber}\";
-        public dynamic currrentRat = W_Maze_Gui.chosenRat;
         public static bool presleepStart = false;
         public static bool runStart = false;
         public static bool postsleepStart = false;
@@ -37,9 +36,10 @@ namespace W_Maze_Gui
 
         }
 
+    
 
         // ##################################################################################################################################
-      
+
         private void enter_Click(object sender, EventArgs e)
         {
             enter.Hide();
@@ -50,6 +50,7 @@ namespace W_Maze_Gui
             box.AppendText("ACC TETRODES \r\n");
             box.AppendText(Environment.NewLine);
             box.AppendText($"Reference: Tetrode- {ACC_ref.Text}  AD Channel- {ACC_refAD.Text }\r\n");
+            box.AppendText(Environment.NewLine);
             for (int i = 1; i <= 8; i++)
             {
                 string qual = "quality" + i;
@@ -61,6 +62,7 @@ namespace W_Maze_Gui
                 if (clb.CheckedItems.Count > 0)
                 {
                     box.AppendText($"TT{i}: {clb.SelectedItem.ToString()}, Cells = {this.Controls[numbox].Text}, {this.Controls[cellProp].Text} ");
+                    box.AppendText(Environment.NewLine);
                 }
 
                 else if (clb.CheckedItems.Count > 0)
@@ -69,7 +71,11 @@ namespace W_Maze_Gui
                 }
             }
 
-            if (qualityrr.CheckedItems.Count > 0) { box.AppendText($"RR: {qualityrr.SelectedItem.ToString()}, Cells = {numrr.Text}  , {cellPropRR.Text}"); }
+            if (qualityrr.CheckedItems.Count > 0) 
+            {
+                box.AppendText($"RR: {qualityrr.SelectedItem.ToString()}, Cells = {numrr.Text}  , {cellPropRR.Text}");
+                box.AppendText(Environment.NewLine);
+            }
 
 
             box.AppendText(Environment.NewLine);
@@ -79,6 +85,7 @@ namespace W_Maze_Gui
             box.AppendText("HIPPOCAMPUS TETRODES \r\n");
             box.AppendText(Environment.NewLine);
             box.AppendText($"Reference: Tetrode- {HC_ref.Text}  AD Channel- {HC_refAD.Text }\r\n");
+            box.AppendText(Environment.NewLine);
             for (int i = 9; i <= 16; i++)
             {
                 string qual = "quality" + i;
@@ -90,6 +97,7 @@ namespace W_Maze_Gui
                 if (clb.CheckedItems.Count > 0)
                 {
                     box.AppendText($"TT{i}: {clb.SelectedItem.ToString()}, Cells = {this.Controls[numbox].Text} , {this.Controls[cellProp].Text} ");
+                    box.AppendText(Environment.NewLine);
                 }
 
                 else if (clb.CheckedItems.Count > 0)
@@ -98,7 +106,11 @@ namespace W_Maze_Gui
                 }
 
             }
-            if (qualityrf.CheckedItems.Count > 0) { box.AppendText($"RF: {qualityrf.SelectedItem.ToString()}, Cells = {numrf.Text} , {cellPropRF.Text} "); }
+            if (qualityrf.CheckedItems.Count > 0) 
+            { 
+                box.AppendText($"RF: {qualityrf.SelectedItem.ToString()}, Cells = {numrf.Text} , {cellPropRF.Text} ");
+                box.AppendText(Environment.NewLine);
+            }
 
 
             box.AppendText(Environment.NewLine);
@@ -159,15 +171,10 @@ namespace W_Maze_Gui
             {
                 // Save the contents of the RichTextBox into the file.
 
-                final.Rtf = MergeRtfTexts(new RichTextBox[] { box, screenshots });
-                final.SaveFile(saveFile1.FileName, RichTextBoxStreamType.RichText);
-                //rtb1.SaveFile(saveFile1.FileName, RichTextBoxStreamType.RichText);   
+                 
             }
 
             Close();
-
-        }
-
 
         }
 
@@ -177,5 +184,9 @@ namespace W_Maze_Gui
             screenshot_window.Show();
         }
     }
-}
+
+   
+    }
+
+
 

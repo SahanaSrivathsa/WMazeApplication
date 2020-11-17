@@ -132,7 +132,7 @@
             this.box.EnableAutoDragDrop = true;
             this.box.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.box.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.box.Location = new System.Drawing.Point(610, 88);
+            this.box.Location = new System.Drawing.Point(585, 88);
             this.box.Name = "box";
             this.box.Size = new System.Drawing.Size(399, 676);
             this.box.TabIndex = 0;
@@ -375,7 +375,7 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Corbel", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label23.Location = new System.Drawing.Point(776, 27);
+            this.label23.Location = new System.Drawing.Point(734, 27);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(100, 33);
             this.label23.TabIndex = 24;
@@ -588,7 +588,7 @@
             this.enter.BackColor = System.Drawing.Color.Snow;
             this.enter.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.enter.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.enter.Location = new System.Drawing.Point(801, 818);
+            this.enter.Location = new System.Drawing.Point(776, 818);
             this.enter.Name = "enter";
             this.enter.Size = new System.Drawing.Size(88, 46);
             this.enter.TabIndex = 46;
@@ -601,7 +601,7 @@
             this.ephys_save.BackColor = System.Drawing.Color.Snow;
             this.ephys_save.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ephys_save.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.ephys_save.Location = new System.Drawing.Point(925, 818);
+            this.ephys_save.Location = new System.Drawing.Point(900, 818);
             this.ephys_save.Name = "ephys_save";
             this.ephys_save.Size = new System.Drawing.Size(84, 46);
             this.ephys_save.TabIndex = 86;
@@ -1235,7 +1235,7 @@
             this.Screenshot.BackColor = System.Drawing.Color.Snow;
             this.Screenshot.Font = new System.Drawing.Font("Corbel", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Screenshot.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.Screenshot.Location = new System.Drawing.Point(610, 818);
+            this.Screenshot.Location = new System.Drawing.Point(585, 818);
             this.Screenshot.Name = "Screenshot";
             this.Screenshot.Size = new System.Drawing.Size(156, 46);
             this.Screenshot.TabIndex = 138;
@@ -1249,7 +1249,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1034, 887);
+            this.ClientSize = new System.Drawing.Size(1016, 887);
             this.Controls.Add(this.Screenshot);
             this.Controls.Add(this.cellProp16);
             this.Controls.Add(this.cellProp14);
